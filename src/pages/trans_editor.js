@@ -1,5 +1,6 @@
 import React from "react" 
 import Editor from "./editor.js";
+import literate from "./literator.js"; 
 
 const sourceLanguages = [
   { value: 'telugu', label: 'Telugu' },
@@ -15,28 +16,63 @@ const transSchemes = [
   { value: 'itrans', label: 'ITRANS' }
 ];
 
+let dictionary = {}
+
 export default class TransEditor extends React.Component {
 
   constructor(props) {
     super(props);
 
-    this.state = {
-      content: ''
+    this.state = {       
+      language: sourceLanguages[0],
+      scheme: transSchemes[0]
     }
+
+    this.handleLangugeSelection = this.handleLangugeSelection.bind(this)
+    this.handleSchemeSelection = this.handleSchemeSelection.bind(this)
+    this.handleSourceTransliteration = this.handleSourceTransliteration.bind(this)
+    this.handleSchemeTransliteration = this.handleSchemeTransliteration.bind(this)
   }
 
-  render(){
-    let selectedLanguage = sourceLanguages[0];
-    let selectedScheme = transSchemes[0];                 
+  handleLangugeSelection = (language) => {
+    this.setState({language: language});
+  }
+
+  handleSchemeSelection = (scheme) => {
+    this.setState({scheme: scheme});
+  }
+
+  handleSourceTransliteration = (content, language) => {
+    let done = (result) => {
+      this.props.onTransliteration(content,result)        
+    }
+    literate.literate(content, dictionary,this.state.scheme.value, language.value, done)        
+  }
+
+  handleSchemeTransliteration = (content, scheme) => {
+    let done = (result) => {         
+      this.props.onTransliteration(result, content)
+    }
+    literate.literate(content, dictionary,this.state.language.value, scheme.value, done)
+  }
+
+  render(){     
+     
     return (      
       <div className="transeditor">
         <Editor content={this.props.content} 
-          onChange={this.props.onChange}
-          transMenu={{selectedOption: selectedLanguage, options: sourceLanguages}}           
+          onChange={this.props.onContentChange}
+          transMenu={{selectedScheme: this.state.language, 
+          options: sourceLanguages,
+          onSelection: this.handleLangugeSelection,
+          onTransliteration: this.handleSourceTransliteration}}           
           file={this.props.file}/>
         <Editor content={this.props.transContent} 
-          onChange={this.props.onChange} 
-          transMenu={{selectedOption: selectedScheme, options: transSchemes}}           
+          onChange={this.props.onTransContentChange} 
+          transMenu={{selectedScheme: this.state.scheme, 
+          options: transSchemes,
+          onSelection: this.handleSchemeSelection,        
+          onTransliteration: this.handleSchemeTransliteration}}           
           file={this.props.file}/>
       </div>
     )

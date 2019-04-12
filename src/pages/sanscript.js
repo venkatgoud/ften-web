@@ -203,7 +203,7 @@
                 other_marks: 'ం ః ఁ'.split(' '),
                 virama: ['్'],
                 consonants: 'క ఖ గ ఘ ఙ చ ఛ జ ఝ ఞ ట ఠ డ ఢ ణ త థ ద ధ న ప ఫ బ భ మ య ర ల వ శ ష స హ ళ క్ష జ్ఞ'.split(' '),
-                symbols: '౦ ౧ ౨ ౩ ౪ ౫ ౬ ౭ ౮ ౯ ఓం ఽ । ॥'.split(' '),
+                symbols: '౦ ౧ ౨ ౩ ౪ ౫ ౬ ౭ ౮ ౯ ఓం ఽ . ..'.split(' '),
                 other: '        ఱ'.split(' '),
                 accent: ["", ""],
                 combo_accent: ["", "", "", ""]
@@ -234,7 +234,7 @@
                 other_marks: ['M', 'H', '.N'],
                 virama: [''],
                 consonants: 'k kh g gh ~N ch Ch j jh ~n T Th D Dh N t th d dh n p ph b bh m y r l v sh Sh s h L kSh j~n'.split(' '),
-                symbols: '0 1 2 3 4 5 6 7 8 9 OM .a | ||'.split(' '),
+                symbols: '0 1 2 3 4 5 6 7 8 9 OM .a . ..'.split(' '),
                 candra: ['.c'],
                 zwj: ['{}'],
                 skip: '_',

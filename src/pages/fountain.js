@@ -2,6 +2,8 @@
 // http://www.opensource.org/licenses/mit-license.php
 // Copyright (c) 2012 Matt Daly
 
+/* eslint-disable */
+
 (function() {
    
   var regex = {

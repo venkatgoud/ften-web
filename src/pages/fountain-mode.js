@@ -72,7 +72,7 @@ export default function fountainModeFn(editorConf, config_) {
       state.character = false;
       state.dialog = true;
       state.parenthetical = true;
-      return 'line- ften-parenthetical';
+      return 'line- variable-2 ften-parenthetical';
     }
     if (state.character || state.parenthetical) {
       stream.skipToEnd();
@@ -80,7 +80,7 @@ export default function fountainModeFn(editorConf, config_) {
       state.character = false;
       state.parenthetical = false;
       state.dialog = true;
-      return 'line- ften-dialog';
+      return 'string ften-dialog';
     }
     if (state.blankLine) {
       if (stream.match(CHARACTER) && !isNextLineBlank(stream)) {
@@ -89,7 +89,7 @@ export default function fountainModeFn(editorConf, config_) {
         state.character = true;
         state.dialog = false;
         state.parenthetical = false;
-        return 'line- ften-character';
+        return 'line- keyword ften-character';
       }
 
       if (stream.match(TRANSITION) && isNextLineBlank(stream)) {
@@ -107,7 +107,7 @@ export default function fountainModeFn(editorConf, config_) {
       state.character = false;
       state.dialog = false;
       state.parenthetical = false;
-      return 'line- ften-slugline';
+      return 'line- variable-2 ften-slugline';
     }
 
     stream.next();

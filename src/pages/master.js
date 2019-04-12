@@ -2,44 +2,34 @@ import React from "react"
 import MenuBar from "./menu_bar.js"
 import Detail from "./detail.js"
 
-import {FILE_EDIT, FILE_OPEN, PREVIEW, FILE_SAVE, SETTINGS, TRANSLITERATE} from "../utils/utils.js"
+import {FILE_EDIT, FILE_OPEN, PREVIEW, SETTINGS, TRANSLITERATE} from "../utils/utils.js"
 
 export default class Master extends React.Component {
 
   constructor(props) {
     super(props)
-    this.state = {       
+    this.state = {
       file: null,
-      action: FILE_EDIT,      
-      isTransDone: false 
+      action: FILE_EDIT
     }
   }
 
-  handleOpen = (file) => {
+  handleOpen = (file) => {     
     this.setState({
       file:file,
-      action: FILE_OPEN,       
-      isTransDone: false }
-    ) 
+      action: FILE_OPEN }
+    )
   }
 
   handleEdit = () => {
-    this.setState({       
-      action: FILE_EDIT,
-      isTransDone: false }
-    ) 
+    this.setState({
+      action: FILE_EDIT }
+    )
   }
 
   handlePreview = () => {
     this.setState({
-      action: PREVIEW,
-      isTransDone: false }
-    )
-  }
-
-  handleSave = () => {
-    this.setState({
-      action: FILE_SAVE}
+      action: PREVIEW }
     )
   }
 
@@ -61,13 +51,12 @@ export default class Master extends React.Component {
           onOpen={this.handleOpen}
           onPreview={this.handlePreview}
           onEdit={this.handleEdit}
-          onSave={this.handleSave}
           onSettings={this.handleSettings}
           onTransliterate={this.handleTransliterate}
-       />       
+       />
        <Detail actionData={this.state} ></Detail>
      </div>
-  }    
+  }
 }
 
 
