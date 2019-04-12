@@ -1,97 +1,79 @@
 * {
-    box-sizing: border-box
+  box-sizing: border-box
 }
 
 body {
-    background-color: floralwhite;
-    font-family: Roboto,-apple-system,BlinkMacSystemFont,'Helvetica Neue',Helvetica,sans-serif
+  background-color: floralwhite;
+  font-family: Roboto,-apple-system,BlinkMacSystemFont,'Helvetica Neue',Helvetica,sans-serif
 }
 
-.menu-bar{     
-    margin: 0 auto;
+.menu-bar{
+  margin: 0 auto;
 }
 
 .menu-item{
-    width: 50px;
-    height: 50px;
-    background-color: #333;
-    padding: 5px;
-    margin: 0 15px 10px 0;
-    border-radius: 25%;
-    opacity: .8;
-    cursor: pointer;     
+  border-radius: 25%;
+  cursor: pointer;
+  width: 50px;
+  height: 50px;
+  background-color: #333;
+  padding: 5px;
+  margin: 0 15px 10px 0;  
+  opacity: .8;  
+}
+
+.menu-item:hover{
+  background-color:darkslategray  
 }
 
 .master {
-    padding: 20px;            
+  padding: 20px;
 }
 
 .master__warning {
-    color: red;
+  color: red;
 }
 
-.detail {     
-    height: 100%;
+.detail {
+   height: 100%;
 }
 
 .editor {
-    width: 50%;
-    height: 100%;
-    float: left;
-    padding-right: 5px;  
+  width: 50%;
+  height: 100%;
+  float: left;
+  padding-right: 5px;
 }
 
 .editor__toolbar {
-    margin: 10px;
+  margin: 10px;
 }
 
-.editor__toolbar__filename {
-    font-family: "Helvetica", "Arial", sans-serif;       
-}
-.editor__toolbar__download {     
-    margin-left: 50px;
-    padding-bottom: 0;
-    border-style: none;
-    cursor: pointer;      
-    width: 50px;
-    height: 40px;
-    opacity: 0.8;
-    background-color: #333;
-    border-radius: 25%;
+.editor__toolbar__filename {   
+  font-style: italic;
 }
 
-.editor__toolbar__trans {     
-    margin-left: 50px;
-    padding-bottom: 0;
-    border-style: none;
-    cursor: pointer;      
-    width: 50px;
-    height: 40px;
-    opacity: 0.8;
-    background-color: #333;
-    border-radius: 25%;
+.editor__toolbar__btn {
+  margin-left: 50px;
+  padding-bottom: 0;   
+  cursor: pointer;   
+  opacity: 0.8;
+  border-style: none;   
+  background-color: floralwhite;
+  border-radius: 25%;
 }
 
-.editor__toolbar__pdf {     
-    margin-left: 50px;
-    padding-bottom: 0;
-    border-style: none;
-    cursor: pointer;      
-    width: 50px;
-    height: 40px;
-    opacity: 0.8;
-    background-color: #333;
-    border-radius: 25%;
+.editor__toolbar__btn:hover{
+  background-color:darkslategray
 }
 
 .editor__warning {
-    color: red;
-    float: right;
+  color: red;
+  float: right;
 }
 
 .transmenu {
-    display: inline-block;
-    width: 150px;
-    padding-left: 25px;
+  display: inline-block;
+  width: 150px;
+  padding-left: 25px;
 }
-
