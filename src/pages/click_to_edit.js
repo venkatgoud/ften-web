@@ -41,6 +41,10 @@ export default class ClickToEdit extends React.Component {
   }
 
   render() {
+    let displayValue = (this.props.value && this.props.value.length > this.props.maxLength) ?
+        this.props.value.substring(0,this.props.maxLength)+"..." : 
+        this.props.value
+
     let element = this.state.editEnabled ?
       <input
         ref={this.input}
@@ -50,7 +54,9 @@ export default class ClickToEdit extends React.Component {
         autoFocus
         onBlur={this.onBlur}
         onKeyPress={this.handleEnterKey} /> :
-      <span className={this.props.textClass}> {this.props.value} </span>
+      <span className={this.props.textClass}>
+        { displayValue} 
+      </span>
 
     return <div className={this.props.containerClass} onClick={this.enableEditMode}>
       {element}

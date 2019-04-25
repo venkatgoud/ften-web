@@ -27,7 +27,9 @@ body {
 }
 
 .master {
-  padding: 20px;
+  padding-left: 0;
+  padding-top: 10px;
+  padding-right: 0;
 }
 
 .master__warning {
@@ -36,6 +38,8 @@ body {
 
 .detail {
    height: 100%;
+   margin-left: 0;
+   margin-right: 0;
 }
 
 .editor {
@@ -102,8 +106,7 @@ body {
 .dialog {
   display: inline-flex;
   background-color: rgb(200, 232, 237);
-  border-radius: .25rem;
-  justify-content: space-evenly;
+  border-radius: .25rem;   
   align-content: space-between;
   padding-left: 5px;
   margin-bottom: 10px;
@@ -116,26 +119,28 @@ body {
 }
 
 .dialog--btn {
-  width: 24vh;
+  width: 100px;
+  height: 40px;
   background-color: rgb(253,182,12);
   border-radius: .25rem;
   color: blue;
   font-size: 24px;
+  align-self: center;
 }
 
 .dialog--btn:hover {
   background-color: rgb(253,200,22);
 }
 
-.dialog .info {
+.info {
   background-color: rgb(200, 232, 237);
 }
 
-.dialog .warning {
+.warning {
   background-color: rgb(255,240,194);
 }
 
-.dialog .error {
+.error {
   background-color: rgb(245, 205, 209);
 }
 

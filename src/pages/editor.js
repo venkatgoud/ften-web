@@ -141,6 +141,7 @@ export default class Editor extends React.Component {
       <div className="editor__toolbar">
         <ClickToEdit
           onEditEnd= { (v) => {this.props.onFileNameChange(v)} }
+          maxLength="20"
           containerClass="input-container"
           inputClass="input-class"
           textClass="text-class"

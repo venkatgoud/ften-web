@@ -13,11 +13,17 @@ const sourceLanguages = [
   { value: 'gujarati', label: 'Gujarati' },
   { value: 'kannada', label: 'Kannada' },
   { value: 'malayalam', label: 'Malayalam' },
-  { value: 'oriya', label: 'Oriya' }
+  { value: 'oriya', label: 'Oriya' },
+  { value: 'devanagari', label: 'Devanagari' }
 ];
 
 const transSchemes = [
-  { value: 'itrans', label: 'ITRANS' }
+  { value: 'itrans', label: 'ITRANS' },
+  { value: 'hk', label: 'Harvard-Kyoto' },
+  { value: 'iast', label: 'iast' },
+  { value: 'slp1', label: 'slp-basic' },
+  { value: 'velthuis', label: 'velthuis' },
+  { value: 'wx', label: 'wx' }
 ];
 
 let dictionary = words.words;
