@@ -13,9 +13,13 @@
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\""
   },
   "dependencies": {
+    "@react-pdf/renderer": "^1.5.1",
     "codemirror": "^5.45.0",
+    "dropbox": "^4.0.17",
     "file-saver": "^2.0.1",
     "gatsby": "^2.3.3",
+    "isomorphic-fetch": "^2.2.1",
+    "load-script": "^1.0.0",
     "react": "^16.8.6",
     "react-codemirror2": "^5.1.0",
     "react-dom": "^16.8.6",

@@ -13,7 +13,7 @@ const BOLD_ITALICS = /^\*\*\*(.+)\*\*\*$/;
 const UNDERLINE = /^_(.+)_$/;
 
 export default function fountainModeFn(editorConf, config_) {
-  // CM.registerHelper('fold', 'fountain', fountainFoldFn);
+  CM.registerHelper('fold', 'fountain', fountainFoldFn);
   function startState() {
     console.log('startState');
     const state = {
@@ -54,7 +54,7 @@ export default function fountainModeFn(editorConf, config_) {
 
     if (stream.match(SECTION)) {
       stream.skipToEnd();
-      return 'line- ften-section';
+      return 'ften-section';
     }
 
     if (stream.match(CENTERED_TEXT)) {
@@ -63,7 +63,7 @@ export default function fountainModeFn(editorConf, config_) {
       state.character = false;
       state.dialog = false;
       state.parenthetical = false;
-      return 'line- ften-centered-text';
+      return 'ften-centered-text';
     }
 
     if ((state.character || state.dialog) && stream.match(PARENTHETICAL)) {
@@ -72,7 +72,7 @@ export default function fountainModeFn(editorConf, config_) {
       state.character = false;
       state.dialog = true;
       state.parenthetical = true;
-      return 'line- variable-2 ften-parenthetical';
+      return 'variable-2 ften-parenthetical';
     }
     if (state.character || state.parenthetical) {
       stream.skipToEnd();
@@ -89,7 +89,7 @@ export default function fountainModeFn(editorConf, config_) {
         state.character = true;
         state.dialog = false;
         state.parenthetical = false;
-        return 'line- keyword ften-character';
+        return 'keyword ften-character';
       }
 
       if (stream.match(TRANSITION) && isNextLineBlank(stream)) {
@@ -98,7 +98,7 @@ export default function fountainModeFn(editorConf, config_) {
         state.character = false;
         state.dialog = false;
         state.parenthetical = false;
-        return 'line- ften-transition';
+        return 'line-ften-transition';
       }
     }
     if (stream.match(SCENE_HEADING) && isNextLineBlank(stream)) {
@@ -107,11 +107,11 @@ export default function fountainModeFn(editorConf, config_) {
       state.character = false;
       state.dialog = false;
       state.parenthetical = false;
-      return 'line- variable-2 ften-slugline';
+      return 'variable-2 line-ften-slugline';
     }
 
     stream.next();
-    return 'line- ften-action';
+    return 'line-ften-action';
   }
   function blankLine(state) {
     state.blankLine = true;

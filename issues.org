@@ -1,0 +1,22 @@
+* CodeMirror
+** DONE Syntax highlighting
+** Linewrapping and cursor issue.
+** DONE Folding
+* pixels vs rem
+* Help
+* Should not work in mobile. Use Media Queries to set display none
+* DONE Full stops converted into | in Telugu
+* DONE Hover on menu items.
+* DONE Background should be merged for editor menus.
+* DONE Get default content from a sample script
+* DONE Dictionary words are empty
+* A js gif animation explaining how to use.
+* Bug in drop down selection
+* venkatgoud.github.io
+* credits and icon consolidation  https://github.com/eligrey/FileSaver.js
+* ESLint
+* Settings ignore English words in dialog.
+* (CONTD.) option - character shouldn't be last line in a page.
+* Check Font correctness.
+* Style the click to edit component - truncate the length
+* Edit to drop box open file loads Preview.

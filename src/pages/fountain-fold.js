@@ -37,6 +37,7 @@ export default function fountainFoldFn(cm, start) {
       nextLine = nextNextLine;
       nextNextLine = cm.getLine(end + 2);
     }
+    // console.log(`fold from ${start.line} to ${end}`);
     return {
       from: CodeMirror.Pos(start.line, firstLine.length),
       to: CodeMirror.Pos(end, cm.getLine(end).length)
@@ -57,7 +58,7 @@ export default function fountainFoldFn(cm, start) {
     nextNextLine = cm.getLine(end + 2);
   }
 
-  return {
+  return {    
     from: CodeMirror.Pos(start.line, firstLine.length),
     to: CodeMirror.Pos(end, cm.getLine(end).length)
   };

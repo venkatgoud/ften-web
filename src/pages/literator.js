@@ -26,7 +26,7 @@ function transform(dialog, dictionary, fromScheme, toScheme) {
 
 function exclude(word, dictionary) {
   //remove trailing exclaimations  
-  let inDictionary =  dictionary[word.replace(/[!?,.]*$/g,'').toLowerCase()]
+  let inDictionary =  dictionary[word.replace(/[-!?,.]*$/g,'').toLowerCase()]       
   return inDictionary
 }
 

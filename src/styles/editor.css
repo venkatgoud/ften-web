@@ -1,37 +1,31 @@
 .CodeMirror {
-    height: 75vh;
-    border-radius: 1.5%;
+  height: 75vh;
+  /* border-radius: 1.5%; */
+  font-family: 'Courier New', Courier, monospace;
 }
 
 /* Fountain CSS */
-.cm-ften-slugline {
-    text-decoration: underline;
-    font-weight: bold;     
-    width: 6in;
-    display: inline-block;   
-  } 
-  
-  .cm-ften-action {    
-    width: 6in;
-    display: inline-block;
-  }
-  
-  .cm-ften-character {              
-    width: 3.3in;   
-  }
-  
-  .cm-ften-dialog {        
-    /* width: 3.3in; */
-    display: inline-block;
-  } 
-  
-  .cm-ften-parenthetical {     
-    /* width: 2in; */
-    display: inline-block;
-  }
-  
-  .cm-ften-transition {     
-    width: 1.5in;
-    float: right;     
-  }
- 
+.ften-slugline {
+  text-decoration: underline;
+  font-weight: bold;
+  width: 6in;
+  display: inline-block;
+}
+
+.ften-character {
+  width: 3.3in;
+}
+
+.ften-dialog {
+  /* width: 3.3in; */
+  display: inline-block;
+}
+
+.ften-parenthetical {
+  /* width: 2in; */
+  display: inline-block;
+}
+
+.ften-transition {
+  float: right;
+}

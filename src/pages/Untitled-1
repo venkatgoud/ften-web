@@ -1,0 +1,141 @@
+const Quixote = () => (
+  <Document>
+    <Page style={styles.body}>
+      <Text style={styles.text}>
+        Casi todo aquel día caminó sin acontecerle cosa que de contar fuese, de
+        lo cual se desesperaba, porque quisiera topar luego luego con quien
+        hacer experiencia del valor de su fuerte brazo. Autores hay que dicen
+        que la primera aventura que sle avino fue la del Puerto Lápice, otros
+        dicen que la de los molinos de viento; pero lo que yo he podido
+        averiguar en este caso, y lo que he hallado escrito en los anales de la
+        Mancha, es que él anduvo todo aquel día, y, al anochecer, su rocín y él
+        se hallaron cansados y muertos de hambre, y que, mirando a todas partes
+        por ver si descubriría algún castillo o alguna majada de pastores donde
+        recogerse y adonde pudiese remediar su mucha hambre y necesidad, vio, no
+        lejos del camino por donde iba, unad venta,que fue como si viera una
+        estrella que, no a los portales, sino a los alcázares de su redención le
+        encaminaba. Diose priesa a caminar, y llegó a ella a tiempo que
+        anochecía.
+      </Text>
+      <Text style={styles.tamil}> 
+        Tamil: 
+        ஆதாம் ஓதி ஏவினார்; Tamil ஆபிரகாம் விசுவாசவித்து,{'\n'}
+        யூதர் சிம்மாசனத்தாளுகை செங்கோல்{'\n'}
+        ஈசாய் வங்கிஷத்தானுதித்தார்
+      </Text>
+      <Text style={styles.hindi}> 
+        Hindi: 
+        शुरुआत वातावरण मुख्यतह औषधिक पढने विवरन पेदा{'\n'}
+        अनुकूल आंतरकार्यक्षमता गुजरना वातावरण पत्रिका{'\n'}
+        सकते बनाना सादगि एछित ऎसाजीस बातसमय
+      </Text>
+      <Text style={styles.telugu}> 
+        Telugu: 
+        తెలీదు.తప్పు చెస్తున్నామేమో నని.
+        పట్టించుకోకు. వదిలెయ్.{'\n'}         
+      </Text>
+    </Page>
+  </Document>
+);
+
+Font.register(
+  'https://fonts.gstatic.com/ea/notosanstamil/v3/NotoSansTamil-Regular.ttf',
+  { family: 'Noto Sans Tamil' },
+);
+
+Font.register(
+  'https://fonts.siliconandhra.org/mallanna.ttf',
+  { family: 'mallanna' },
+);
+
+
+Font.register(
+  'https://fonts.gstatic.com/ea/notosansdevanagari/v3/NotoSansDevanagari-Regular.ttf',
+  { family: 'Noto Sans Hindi' },
+);
+
+Font.register(
+'http://fonts.siliconandhra.org/ramabhadra.ttf',{
+  family: 'ramabhadra'
+})
+
+const styles = StyleSheet.create({
+  body: {
+    paddingTop: 35,
+    paddingBottom: 65,
+    paddingHorizontal: 35,
+  },
+  tamil: {
+    margin: 12,
+    fontSize: 14,
+    fontFamily: 'Noto Sans Tamil'
+  },
+  hindi: {
+    margin: 12,
+    fontSize: 14,
+    fontFamily: 'Noto Sans Hindi'
+  },
+  telugu: {
+    margin: 12,
+    fontSize: 14,
+    fontFamily: 'mallanna'
+  }
+});
+
+ReactPDF.render(<Quixote />);
+
+https://www.dropbox.com/developers/chooser
+
+import { Dropbox } from 'dropbox';
+import Dropbox from 'dropbox/dropbox';
+import DropboxTeam from 'dropbox';
+import { DropboxTeam } from 'dropbox';
+
+var Dropbox = require('dropbox');
+var dbx = new Dropbox({accessToken: '...'});
+
+dbx.filesDownload({path: '/test.txt'})
+    .then(function (response) {
+        var blob = response.fileBlob;
+        var reader = new FileReader();
+        reader.addEventListener("loadend", function() {
+            console.log(reader.result); // will print out file content
+        });
+        reader.readAsText(blob);
+    })
+    .catch(function (error) {
+        ...
+    })
+
+    const apiURL = 'https://api.dropboxapi.com/2/files/get_metadata';
+
+    fetch(apiURL, {
+      method: 'post',
+      headers: {
+          "Authorization": `Bearer ${DROPBOX_ACCESS_TOKEN}`,
+          "Content-type": "application/json; charset=UTF-8"
+      },
+      body: JSON.stringify(reqData),
+    })
+    .then((response)=>{ return response.json()})
+    .then((data)=>{
+      console.log(data)
+        return data.path_lower
+        })     
+
+   csvFile = build up a string of the whole file...
+
+const dataURI = 'data:;text/plain,' + encodeURIComponent(csvFile);
+Dropbox.save(dataURI, "filename.csv", options);     
+
+
+var ACCESS_TOKEN ="Your token get from dropbox";
+      var dbx = new Dropbox({ accessToken: ACCESS_TOKEN });
+      var fileInput = document.getElementById('files1');
+      var file = fileInput.files[0];
+      res=dbx.filesUpload({path: '/' + file.name, contents: file})
+      .then(function(response) {
+      var results = document.getElementById('results');
+      results.appendChild(document.createTextNode('File uploaded!'));
+      res=response;
+      console.log(response);
