@@ -17,7 +17,8 @@
 ** credits and icon consolidation  https://github.com/eligrey/FileSaver.js
 ** ESLint
 * Settings ignore English words in dialog.
-* (CONTD.) option - character shouldn't be last line in a page.
+* (CONTD.) option - character shouldn't be last line in a page. keep track of count of lines per page and if exceeds add a new page?
 * Edit to drop box open file loads Preview.
 * pixels vs rem
 * Should not work in mobile. Use Media Queries to set display none
+* Bitter avuddi is not transliterating properly.

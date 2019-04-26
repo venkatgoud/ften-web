@@ -1,7 +1,7 @@
 import React from "react"
 import { Page, Text, Document, StyleSheet } from '@react-pdf/renderer';
 import { PDFViewer } from '@react-pdf/renderer';
-import parser from './fountain.js'
+import parser from '../lib/fountain.js'
 
 //inches
 const pageMargins = {

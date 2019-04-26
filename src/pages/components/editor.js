@@ -3,11 +3,11 @@ import { saveAs } from 'file-saver';
 import ClickToEdit from './click_to_edit.js';
 import { Controlled as CodeMirror } from 'react-codemirror2';
 import Select from 'react-select';
-import fountainModeFn from './fountain-mode';
+import fountainModeFn from '../lib/fountain-mode';
 import 'codemirror/lib/codemirror.css';
 import 'codemirror/theme/material.css';
 import 'codemirror/addon/fold/foldgutter.css';
-import '../styles/editor.css';
+import '../../styles/editor.css' 
 require('codemirror/addon/fold/foldcode.js');
 require('codemirror/addon/fold/foldgutter.js');
 require('codemirror/addon/search/search.js');
@@ -94,7 +94,7 @@ export default class Editor extends React.Component {
   generatePdf = () => {
     if (this.editorInstance) {
       let value = this.editorInstance.getValue();
-      this.props.onPreview(value)
+      this.props.onPreview(value, false)
     }
     else {
       this.props.onError('editorInstance not loaded!');

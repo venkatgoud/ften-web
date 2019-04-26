@@ -1,10 +1,7 @@
 import React from "react"
-import Editor from "./editor.js";
-import Preview from "./preview.js";
-import literate from "./literator.js";
-import words from "../utils/common_words.js"
-
-import { EDITOR_MODE_TRANS, PREVIEW_MODE_INDIAN } from "../utils/utils.js"
+import Editor from "../components/editor.js";
+import literate from "../lib/literator.js";
+import words from "../../utils/common_words.js"
 
 const sourceLanguages = [
   { value: 'telugu', label: 'Telugu' },
@@ -42,8 +39,6 @@ export default class TransEditor extends React.Component {
     this.handleSchemeSelection = this.handleSchemeSelection.bind(this)
     this.handleSourceTransliteration = this.handleSourceTransliteration.bind(this)
     this.handleSchemeTransliteration = this.handleSchemeTransliteration.bind(this)
-    this.modeToComponent = this.modeToComponent.bind(this)
-
     this.onTransEditorChange = this.onTransEditorChange.bind(this)
   }
 
@@ -52,89 +47,80 @@ export default class TransEditor extends React.Component {
   }
 
   handleLangugeSelection = (language) => {
-    this.setState({language: language});
+    this.setState({ language: language });
   }
 
   handleSchemeSelection = (scheme) => {
-    this.setState({scheme: scheme});
+    this.setState({ scheme: scheme });
   }
 
   handleSourceTransliteration = (content, language) => {
     let done = (result) => {
-      this.props.onTransliteration(content,result)
+      this.props.onTransliteration(content, result)
     }
-    literate.literate(content, dictionary,this.state.scheme.value, language.value, done)
+    literate.literate(content, dictionary, this.state.scheme.value, language.value, done)
   }
 
   handleSchemeTransliteration = (content, scheme) => {
     let done = (result) => {
       this.props.onTransliteration(result, content)
     }
-    literate.literate(content, dictionary,this.state.language.value, scheme.value, done)
+    literate.literate(content, dictionary, this.state.language.value, scheme.value, done)
   }
 
   handleLangugeSelection = (language) => {
-    this.setState({language: language});
+    this.setState({ language: language });
   }
 
   handleSchemeSelection = (scheme) => {
-    this.setState({scheme: scheme});
+    this.setState({ scheme: scheme });
   }
 
   handleSourceTransliteration = (content, language) => {
     let done = (result) => {
-      this.props.onTransliteration(content,result)
+      this.props.onTransliteration(content, result)
     }
-    literate.literate(content, dictionary,this.state.scheme.value, language.value, done)
+    literate.literate(content, dictionary, this.state.scheme.value, language.value, done)
   }
 
   handleSchemeTransliteration = (content, scheme) => {
     let done = (result) => {
       this.props.onTransliteration(result, content)
     }
-    literate.literate(content, dictionary,this.state.language.value, scheme.value, done)
+    literate.literate(content, dictionary, this.state.language.value, scheme.value, done)
   }
 
-  modeToComponent = () => {
-    let transEditor = <div className="transeditor">
-      <Editor content={this.props.content}
+  render() {
+    return <div className="transeditor">
+      <Editor content={this.props.actionData.editorContent}
         onChange={this.props.onEditorChange}
         onPreview={this.props.onPreview}
         onDropboxSave={this.props.onDbxEditorSave}
-        transMenu={{selectedScheme: this.state.language,
+        transMenu={{
+          selectedScheme: this.state.language,
           options: sourceLanguages,
           onSelection: this.handleLangugeSelection,
-          onTransliteration: this.handleSourceTransliteration}}
-        file={this.props.editorFile}
+          onTransliteration: this.handleSourceTransliteration
+        }}
+        file={this.props.actionData.editorFile}
         onFileNameChange={this.props.onEditorFilenameChange}
         onError={this.props.onError}
-        onInfo={this.props.onInfo}/>
-      <Editor content={this.props.transContent}
+        onInfo={this.props.onInfo} />
+      <Editor content={this.props.actionData.transEditorContent}
         onChange={this.onTransEditorChange}
         onPreview={this.props.onPreview}
         onDropboxSave={this.props.onDbxTransEditorSave}
-        transMenu={{selectedScheme: this.state.scheme,
+        transMenu={{
+          selectedScheme: this.state.scheme,
           options: transSchemes,
           onSelection: this.handleSchemeSelection,
-          onTransliteration: this.handleSchemeTransliteration}}
-        file={this.props.transEditorFile}
+          onTransliteration: this.handleSchemeTransliteration
+        }}
+        file={this.props.actionData.transEditorFile}
         onFileNameChange={this.props.onTransEditorFilenameChange}
         onError={this.props.onError}
-        onInfo={this.props.onInfo}/>
+        onInfo={this.props.onInfo} />
     </div>
-
-    let preview = <Preview
-      indian={this.props.mode === PREVIEW_MODE_INDIAN}
-      content={this.props.content}
-      file={this.props.file}
-      onError={this.props.onError}
-      onInfo={this.props.onInfo}/>
-
-    return this.props.mode === EDITOR_MODE_TRANS ? transEditor : preview;
-  }
-
-  render(){
-    return this.modeToComponent()
   }
 }
 

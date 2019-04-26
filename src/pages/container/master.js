@@ -1,9 +1,9 @@
 import React from "react"
-import MenuBar from "./menu_bar.js"
 import Detail from "./detail.js"
-import Dialog from "./dialog.js"
-import { isAllowedExtension, EDITOR_MODE, EDITOR_MODE_TRANS, PREVIEW_MODE, PREVIEW_MODE_INDIAN, FILE_OPEN, FILE_EDIT, FILE_NEW, TRANSLITERATE } from "../utils/utils.js"
-import sample from "./sample.js"
+import MenuBar from "../components/menu_bar.js"
+import Dialog from "../components/dialog.js"
+import { isAllowedExtension, EDITOR_MODE, EDITOR_MODE_TRANS, PREVIEW_MODE, PREVIEW_MODE_INDIAN, FILE_OPEN, FILE_EDIT, FILE_NEW, TRANSLITERATE } from "../../utils/utils.js"
+import sample from "../../utils/sample.js"
 import { Dropbox } from 'dropbox';
 import fetch from 'isomorphic-fetch';
 
@@ -41,7 +41,7 @@ export default class Master extends React.Component {
     this.onDbxTransEditorSave = this.onDbxTransEditorSave.bind(this)
     this.onEditorFilenameChange = this.onEditorFilenameChange.bind(this)
     this.onTransEditorFilenameChange = this.onTransEditorFilenameChange.bind(this)
-    this.updateErrorMessage = this.updateErrorMessage.bind(this)
+    this.setErrorMessage = this.setErrorMessage.bind(this)
   }
 
   updateState = (newState) => {
@@ -55,7 +55,7 @@ export default class Master extends React.Component {
       action: FILE_NEW,
       file: null,
       editorContent: sample.content,
-      transEditorContent: ''
+      transEditorContent: ' '
     })
   }
 
@@ -71,7 +71,7 @@ export default class Master extends React.Component {
     this.setState({ warningMsg: '' })
   }
 
-  updateErrorMessage = (msg) => {
+  setErrorMessage = (msg) => {
     this.setState({ errorMsg: msg })
   }
 
@@ -133,7 +133,7 @@ export default class Master extends React.Component {
         reader.readAsText(blob);
       })
       .catch((error) => {
-        this.updateErrorMessage(error)
+        this.setErrorMessage(error)
       })
   }
 
@@ -148,7 +148,7 @@ export default class Master extends React.Component {
     dbx.filesGetMetadata({ "path": file.id })
       .then((metadata) => { this.dbxReadFile(dbx, file, metadata) })
       .catch((error) => {
-        this.updateErrorMessage(error)
+        this.setErrorMessage(error)
       })
   }
 
@@ -219,7 +219,7 @@ export default class Master extends React.Component {
       dbx.filesUpload({ path, mode, contents: content })
         .then((metadata)=>{cbk(metadata)})
         .catch((error) => {
-          this.updateErrorMessage(error)
+          this.setErrorMessage(error)
         });
     }
     else {
@@ -251,6 +251,8 @@ export default class Master extends React.Component {
         message={this.state.infoMsg}
         onOk={this.clearInfoMsg}/> : null;
 
+    let {mode, action, editorContent, transEditorContent, editorFile, transEditorFile} = this.state;
+    let actionData = {mode, action, editorContent, transEditorContent, editorFile, transEditorFile};
 
     return <div className="master">
       <MenuBar
@@ -264,7 +266,7 @@ export default class Master extends React.Component {
       {warningDialog}
       {infoDialog}
       <Detail
-        actionData={this.state}
+        actionData={actionData}
         onPreview={this.onPreview}
         onTransliteration={this.onTransliteration}
         onEditorChange={this.onEditorChange}
@@ -273,8 +275,8 @@ export default class Master extends React.Component {
         onTransEditorChange={this.onTransEditorChange}
         onTransEditorFilenameChange={this.onTransEditorFilenameChange}
         onDbxTransEditorSave={this.onDbxTransEditorSave}
-        onError={this.updateErrorMessage}
-        onInfo={this.onInfo}
+        onError={this.setErrorMessage}
+        onInfo={this.onInfo}         
       />
     </div>
   }
