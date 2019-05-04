@@ -2,7 +2,7 @@ import React from "react"
 import MenuItem from "./menu_item.js"
 import DropboxChooser from "./dropbox-chooser.js"
 
-const DROPBOX_APP_KEY = 'gia2rceo5ox94jw';
+const DROPBOX_APP_KEY = 'dlgs25astqhe1gc';
 
 export default class MenuBar extends React.Component {
 
@@ -47,6 +47,9 @@ export default class MenuBar extends React.Component {
       <MenuItem className="menu-item"
         onClick={this.props.onTransliterate}
         src="gfx/icons/translation.svg" alt="Trans" />
+      <MenuItem className="menu-item"
+        onClick={this.props.onAbout}
+        src="gfx/icons/info.svg" alt="About" />
     </div>
   }
 }

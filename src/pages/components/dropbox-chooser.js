@@ -25,7 +25,7 @@ export default class DropboxChooser extends React.Component {
 
   static defaultProps = {
     cancel: () => { },
-    linkType: 'preview',
+    linkType: 'direct',
     multiselect: false,
     folderselect: false,
     disabled: false

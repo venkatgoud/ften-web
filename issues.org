@@ -22,3 +22,6 @@
 * pixels vs rem
 * Should not work in mobile. Use Media Queries to set display none
 * Bitter avuddi is not transliterating properly.
+* Dictionary of iTrans Telugu common words for auto-complete
+* ACTIVE dropbox info messages.
+* Dropbox saver - loading, refresh, login.
