@@ -81,6 +81,6 @@ export default class DropboxChooser extends React.Component {
     return <MenuItem
       className="menu-item"
       onClick={this.onChoose}
-      src="gfx/icons/dropbox-open-icon.svg" alt="New" />
+      src="gfx/icons/dropbox-open-icon.svg" alt="Dropbox" />
   }
 }

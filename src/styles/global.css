@@ -9,21 +9,38 @@ body {
 
 .menu-bar{
   margin: 0 auto;
+  display: flex;
 }
 
 .menu-item{
   border-radius: 25%;
-  cursor: pointer;
-  width: 50px;
-  height: 50px;
+  cursor: pointer;  
   background-color: rgb(134, 146, 146);
   padding: 5px;
   margin: 0 15px 10px 0;
-  opacity: .8;
+  opacity: .8;  
+  display: inline;
+  position: relative;
 }
 
 .menu-item:hover{
-  background-color:darkslategray
+  background-color:darkslategray;
+}
+
+.tooltiptext {
+  width: 100px;
+  background-color: rgb(39, 37, 37);   
+  color: #fff;
+  text-align: center; 
+  border-radius: 6px;
+  visibility: hidden;
+  position: absolute;
+  top: 60px;
+  z-index: 3;
+}
+
+.menu-item:hover .tooltiptext{
+  visibility: visible;
 }
 
 .master {

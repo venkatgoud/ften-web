@@ -1,9 +1,13 @@
 import React from "react"
 
-export default (props) =>  
-    <img className={props.className} 
-        src={props.src} 
-        alt={props.alt}
-         onClick={props.onClick}/> 
+export default (props) =>
+    <div className={props.className} > 
+        <span className="tooltiptext">{props.alt}</span>        
+        <img 
+            src={props.src} 
+            alt={props.alt}
+            width="50px"
+            onClick={props.onClick}/>          
+    </div>
 
  
