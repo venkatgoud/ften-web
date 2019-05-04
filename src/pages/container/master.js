@@ -1,6 +1,7 @@
 import React from "react"
 import Detail from "./detail.js"
 import About from "../components/about.js"
+import DeviceInfo from "../components/device-info"
 import MenuBar from "../components/menu_bar.js"
 import Dialog from "../components/dialog.js"
 import { isAllowedExtension, EDITOR_MODE, EDITOR_MODE_TRANS, PREVIEW_MODE, PREVIEW_MODE_INDIAN, FILE_OPEN, FILE_EDIT, FILE_NEW, TRANSLITERATE } from "../../utils/utils.js"
@@ -203,6 +204,7 @@ export default class Master extends React.Component {
 
     return (
       <div className="master">
+        <DeviceInfo/>
         <MenuBar
           onOpen={this.handleOpenMenu}
           onDropboxSuccess={this.handleDropboxOpenMenu}

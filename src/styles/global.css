@@ -200,3 +200,22 @@ body {
   cursor: pointer;  
   color:#fff;
 }
+
+.device-info {
+  visibility: hidden;
+  display: none;   
+}
+
+@media only screen and (max-width: 600px) {
+  .menu-bar,.master, .detail {
+    visibility: hidden;
+  }
+
+  .device-info {
+    display: block;
+    visibility: visible;
+    padding-left: 10px;
+    padding-right: 10px;
+    line-height: 1.6;
+  }
+}
