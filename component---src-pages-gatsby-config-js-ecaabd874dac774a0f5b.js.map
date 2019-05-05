@@ -1,0 +1,1 @@
+{"version":3,"sources":["webpack:///./src/pages/gatsby-config.js"],"names":["module","exports","pathPrefix"],"mappings":"4EAAAA,EAAOC,QAAU,CACfC,WAAY","file":"component---src-pages-gatsby-config-js-ecaabd874dac774a0f5b.js","sourcesContent":["module.exports = {\n  pathPrefix: \"/ften-web\",\n}"],"sourceRoot":""}

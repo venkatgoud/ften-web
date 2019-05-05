@@ -1,0 +1,2 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[20],{165:function(n,p){n.exports={pathPrefix:"/ften-web"}}}]);
+//# sourceMappingURL=component---src-pages-gatsby-config-js-ecaabd874dac774a0f5b.js.map

@@ -1,0 +1,2 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[11],{142:function(e,a,t){"use strict";t.r(a);var n=t(0),c=t.n(n);a.default=function(e){return c.a.createElement("div",{className:e.className},c.a.createElement("span",{className:"tooltiptext"},e.alt),c.a.createElement("img",{src:e.src,alt:e.alt,width:"50px",onClick:e.onClick}))}}}]);
+//# sourceMappingURL=component---src-pages-components-menu-item-js-4b8900a29a6b95b34056.js.map

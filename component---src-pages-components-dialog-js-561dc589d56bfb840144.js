@@ -1,0 +1,2 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[8],{149:function(e,n,a){"use strict";a.r(n);var t=a(0),l=a.n(t);n.default=function(e){return l.a.createElement(l.a.Fragment,null,l.a.createElement("div",{className:"dialog "+e.kind},l.a.createElement("p",null,e.message),l.a.createElement("button",{className:"dialog--btn",onClick:e.onOk},"Ok"),"warning"===e.kind?l.a.createElement("button",{className:"dialog--btn",onClick:e.onCancel},"Cancel"):null))}}}]);
+//# sourceMappingURL=component---src-pages-components-dialog-js-561dc589d56bfb840144.js.map

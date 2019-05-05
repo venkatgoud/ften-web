@@ -1,0 +1,2 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[13],{158:function(n,t,e){"use strict";e.r(t),e.d(t,"default",function(){return s});var r=e(7),a=e.n(r),i=e(0),o=e.n(i),s=function(n){function t(t){var e;return(e=n.call(this,t)||this).state={file:"",errorMsg:""},e}return a()(t,n),t.prototype.render=function(){return o.a.createElement("div",{className:"settings"},o.a.createElement("h3",null,"Settings "))},t}(o.a.Component)}}]);
+//# sourceMappingURL=component---src-pages-components-settings-js-3ce6dacbae7d70429752.js.map
