@@ -4,8 +4,8 @@ import About from "../components/about.js"
 import DeviceInfo from "../components/device-info"
 import MenuBar from "../components/menu_bar.js"
 import Dialog from "../components/dialog.js"
-import { isAllowedExtension, EDITOR_MODE, EDITOR_MODE_TRANS, PREVIEW_MODE, PREVIEW_MODE_INDIAN, FILE_OPEN, FILE_EDIT, FILE_NEW, TRANSLITERATE } from "../../utils/utils.js"
-import sample from "../../utils/sample.js"
+import { isAllowedExtension, EDITOR_MODE, EDITOR_MODE_TRANS, PREVIEW_MODE, PREVIEW_MODE_INDIAN, FILE_OPEN, FILE_EDIT, FILE_NEW, TRANSLITERATE } from "../utils/utils.js"
+import sample from "../utils/sample.js"
 
 import fetch from 'isomorphic-fetch';
 const newFile = 'newfile1.fountain'

@@ -6,7 +6,7 @@ export default (props) => (
     <span onClick={props.onClick}>x</span>
   </div>
   <h3> What is this? </h3>
-  <p>This application is for screenwriters, mostly for Indian screenwriters. It helps in two ways. </p>
+  <p>This tool is for screenwriters, mostly for Indian screenwriters. It helps in two ways. </p>
   <ul> 
     <li>Some Indian screenplays are maintained in two forms. One, a transliteration form 
       so that they can be read by people who cannot read the native script. Two, a native version. Writing a screenplay itself is an arduous task in itself and maintaining two versions is a headache one wants to avoid. With this application, one can 'convert' from one form to another easily.

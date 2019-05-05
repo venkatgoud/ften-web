@@ -1,7 +1,7 @@
 import React from "react"
 import Editor from "../components/editor.js";
 import literate from "../lib/literator.js";
-import words from "../../utils/common_words.js"
+import words from "../utils/common_words.js"
 
 const sourceLanguages = [
   { value: 'telugu', label: 'Telugu' },

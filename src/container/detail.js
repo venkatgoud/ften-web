@@ -1,6 +1,6 @@
 import React from "react"
 
-import { TRANSLITERATE, PREVIEW_MODE, PREVIEW_MODE_INDIAN } from "../../utils/utils.js"
+import { TRANSLITERATE, PREVIEW_MODE, PREVIEW_MODE_INDIAN } from "../utils/utils.js"
 import ViewContainer from "./view_container.js";
 import TransEditor from "./trans_editor.js";
 import Preview from "../components/preview";

@@ -1,6 +1,6 @@
-import * as CM from 'codemirror';
-import fountainFoldFn from './fountain-fold';
-
+import fountainFoldFn from './fountain-fold'; 
+import CodeMirror from 'codemirror/lib/codemirror.js'
+ 
 const SCENE_HEADING = /(^\.[\w]+.+)|(?:(?:^int|ext|est|int\.ext|int\/ext|i\/e)[. ].+)$/i;
 const TRANSITION = /^[A-Z\s]+TO:$/;
 const CHARACTER = /^['A-Z\s\d]+(\s*\(.+\)\s*)*$/;
@@ -13,7 +13,7 @@ const BOLD_ITALICS = /^\*\*\*(.+)\*\*\*$/;
 const UNDERLINE = /^_(.+)_$/;
 
 export default function fountainModeFn(editorConf, config_) {
-  CM.registerHelper('fold', 'fountain', fountainFoldFn);
+  CodeMirror.registerHelper('fold', 'fountain', fountainFoldFn);
   function startState() {
     console.log('startState');
     const state = {
