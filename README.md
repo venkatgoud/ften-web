@@ -13,7 +13,14 @@
   </ul>
   <p> You can just have one script and generate the format you want and whenever you want.</p>
   <p> This is a client-side only app means your screenplay is never sent to any server.</p>
-  <h3> Known issues and features </h3>
+  <h3> Features </h3>
+    <ul>
+      <li>Load a screenplay from your Dropbox or from your computer.</li>
+      <li>Transliterate. Click on the 'Trans' icon on the top. It will open a dual editor where by clicking on the arrow icon, you can transliterate.</li>
+      <li>Download to your computer or save it to your dropbox</li>
+      <li>Generate PDF in Indian movie industry format</li>
+    </ul>
+  <h3> Known issues </h3>
   <ul>
     <li>Only converts the dialog portion of the script to native and vice-versa. Leaves action and character names as is. </li>
     <li>Certain often used English words are not 'converted'. They are kept as is. An internal dictionary is used for that.</li>
@@ -21,6 +28,8 @@
     <li>BUG: Indian PDF format in native script doesn't work yet. Waiting on dependent component to support the woff fonts. Workaround: Use command line tools from <a href="https://github.com/venkatgoud/fountain-utils">here</a></li>
     <li>Issue: Saving native script directly into Dropbox fails. Workaround: You can always use the download option to download into your Dropbox folder to sync it.</li>
     <li>BUG: The PDF for Hollywood format doesn't have correct margins. Don't use it!</li>
+  <li>Issues in formatting the title page</li> 
+      <li>Transliteration is adding blanklines in the beginning and end.</li>
   </ul>   
   <h3> Credits </h3>
   <a href="https://github.com/mattdaly/Fountain.js">https://github.com/mattdaly/Fountain.js</a><br/> 
