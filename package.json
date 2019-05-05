@@ -10,7 +10,8 @@
     "format": "prettier --write src/**/*.{js,jsx}",
     "start": "npm run develop",
     "serve": "gatsby serve",
-    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\""
+    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\"",
+    "deploy": "gatsby build --prefix-paths && gh-pages -d public"
   },
   "dependencies": {
     "@react-pdf/renderer": "^1.5.1",
@@ -26,6 +27,7 @@
     "react-select": "^2.4.2"
   },
   "devDependencies": {
+    "gh-pages": "^2.0.1",
     "prettier": "^1.16.4"
   },
   "repository": {

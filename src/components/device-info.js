@@ -3,8 +3,8 @@ import React from "react"
 export default () => (
 <div className="device-info">  
   <h3> Sorry, this application needs a device with atleast 768 pixel resolution.</h3>
-  <h4> But What is this? </h4>
-  <p>This application is for screenwriters, mostly for Indian screenwriters. It helps in two ways. </p>
+  <h4> But, what is this? </h4>
+  <p>This is an application for filmmakers, mostly for Indian filmmakers. It helps in two ways. </p>
   <ul> 
     <li>Some Indian screenplays are maintained in two forms. One, a transliteration form 
       so that they can be read by people who cannot read the native script. Two, a native version. Writing a screenplay itself is an arduous task in itself and maintaining two versions is a headache one wants to avoid. With this application, one can 'convert' from one form to another easily.
@@ -14,4 +14,6 @@ export default () => (
     </li>
   </ul>
   <p> You can just have one script and generate the format you want and whenever you want.</p>  
+  <p> Please check it out on a Desktop or Laptop.</p>  
+
 </div>)
