@@ -1,3 +1,6 @@
+    
+  ![](app_use.gif)
+  
   
   Check the application [here](https://venkatgoud.github.io/ften-web)
   
