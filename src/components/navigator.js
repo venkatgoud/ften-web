@@ -2,10 +2,12 @@ import React from "react";
 import { saveAs } from 'file-saver';
 import '../styles/navigator.css'
 import { UnControlled as CodeMirror } from 'react-codemirror2';
-import('codemirror/addon/fold/foldcode.js');
-import('codemirror/addon/fold/foldgutter.js');
-import('codemirror/addon/fold/markdown-fold.js');
-require('codemirror/mode/markdown/markdown');
+if (typeof navigator !== 'undefined') {
+  import('codemirror/addon/fold/foldcode.js');
+  import('codemirror/addon/fold/foldgutter.js');
+  import('codemirror/addon/fold/markdown-fold.js');
+  require('codemirror/mode/markdown/markdown');
+}
 
 const EditorToolbarBtn = (onClick, imgSrc, altText) => {
   return (
@@ -87,6 +89,7 @@ export default class Navigator extends React.Component {
   }
 
   render() {
+    console.log('navigator render');
     let downloadBtn = EditorToolbarBtn(this.download, "gfx/icons/download.svg", "downloand")
     let { lineArray, toc } = parse(this.props.content);
 

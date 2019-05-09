@@ -1,4 +1,7 @@
-import CodeMirror from 'codemirror/lib/codemirror.js'
+let CodeMirror;
+if (typeof navigator !== 'undefined') {
+  CodeMirror = require('codemirror');
+}
 
 export default function fountainFoldFn(cm, start) {
   const maxDepth = 100;

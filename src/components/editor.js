@@ -5,7 +5,22 @@ import Select from 'react-select';
 import 'codemirror/lib/codemirror.css';
 import 'codemirror/theme/material.css';
 import 'codemirror/addon/fold/foldgutter.css';
-import '../styles/editor.css'
+import '../styles/editor.css';
+import fountainModeFn from "../lib/fountain-mode.js";
+import { Controlled as CodeMirror } from 'react-codemirror2';
+
+if (typeof navigator !== 'undefined') {
+  import('codemirror/addon/fold/foldcode.js');
+  import('codemirror/addon/fold/foldgutter.js');
+  import('codemirror/addon/search/search.js');
+  import('codemirror/addon/search/searchcursor.js');
+  import('codemirror/addon/dialog/dialog.js');
+}
+
+const mode = {
+  name: 'fountain',
+  fn: fountainModeFn
+};
 
 const newFile = 'newfile.fountain'
 
@@ -38,12 +53,8 @@ export default class Editor extends React.Component {
   constructor(props) {
     super(props)
 
-    this.state = { codeMirrorLoaded: false }
-
     this.editorInstance = null;
     this.codeMirrorInstance = null;
-    this.mode = {}
-
     this.transliterate = this.transliterate.bind(this)
     this.download = this.download.bind(this)
     this.generatePdf = this.generatePdf.bind(this)
@@ -119,28 +130,6 @@ export default class Editor extends React.Component {
     }
   }
 
-  componentDidMount() {
-    const lazyFountainModeFn = import('../lib/fountain-mode')
-    const lazyControlled = import('react-codemirror2');
-
-    import('codemirror/addon/fold/foldcode.js');
-    import('codemirror/addon/fold/foldgutter.js');
-    import('codemirror/addon/search/search.js');
-    import('codemirror/addon/search/searchcursor.js');
-    import('codemirror/addon/dialog/dialog.js');
-
-    const that = this;
-
-    Promise.all([lazyFountainModeFn, lazyControlled]).then(([modeFn, CodeMirrorModule]) => {
-      that.codeMirrorInstance = CodeMirrorModule.Controlled;
-      that.mode = {
-        name: 'fountain',
-        fn: modeFn.default
-      };
-      that.setState({ codeMirrorLoaded: true });
-    });
-  }
-
   render() {
     console.log('editor render')
 
@@ -163,8 +152,6 @@ export default class Editor extends React.Component {
       </div>
       : null
 
-    let CodeMirror = this.state.codeMirrorLoaded ? this.codeMirrorInstance : null;
-
     return (<div className="editor" style={this.props.style}>
       <div className="editor__toolbar">
         <ClickToEdit
@@ -179,16 +166,16 @@ export default class Editor extends React.Component {
         {dropboxBtn}
         {pdfBtn}
         {pdfIndianBtn}
-        {!this.state.codeMirrorLoaded ? null : (<CodeMirror
-          editorDidMount={(editor) => { this.editorInstance = editor;}}
+        <CodeMirror
+          editorDidMount={(editor) => { this.editorInstance = editor; }}
           value={this.props.content}
-          defineMode={this.mode}
+          defineMode={mode}
           options={codeMirrorOptions}
           onBeforeChange={
             (editor, data, value) => !!this.props.content && this.props.onChange(value)}
           onChange={(editor, data, value) => {
           }}
-        />)}
+        />
       </div>
     </div>
     )

@@ -1,5 +1,8 @@
 import fountainFoldFn from './fountain-fold'; 
-import CodeMirror from 'codemirror/lib/codemirror.js'
+let CodeMirror;
+if (typeof navigator !== 'undefined') {
+  CodeMirror = require('codemirror');
+}
  
 const SCENE_HEADING = /(^\.[\w]+.+)|(?:(?:^int|ext|est|int\.ext|int\/ext|i\/e)[. ].+)$/i;
 const TRANSITION = /^[A-Z\s]+TO:$/;
