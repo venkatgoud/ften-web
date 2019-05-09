@@ -107,6 +107,18 @@ export default class Editor extends React.Component {
     this.props.transMenu.onSelection(selectedScheme)
   }
 
+  componentDidUpdate(prevProps) {
+    if (prevProps.scroll && this.props.scroll && prevProps.scroll !== this.props.scroll) {
+      console.log(`scroll line : ${this.props.scroll.line}`)
+      if (this.editorInstance) {
+        console.log(`scrolling to ${this.props.scroll.line}`);
+        this.editorInstance.scrollIntoView(this.props.scroll)
+      }
+    } else {
+      console.log('no scroll');
+    }
+  }
+
   componentDidMount() {
     const lazyFountainModeFn = import('../lib/fountain-mode')
     const lazyControlled = import('react-codemirror2');
@@ -119,13 +131,13 @@ export default class Editor extends React.Component {
 
     const that = this;
 
-    Promise.all([lazyFountainModeFn, lazyControlled]).then(([modeFn, CodeMirrorModule]) => {       
+    Promise.all([lazyFountainModeFn, lazyControlled]).then(([modeFn, CodeMirrorModule]) => {
       that.codeMirrorInstance = CodeMirrorModule.Controlled;
       that.mode = {
         name: 'fountain',
         fn: modeFn.default
       };
-      that.setState({ codeMirrorLoaded: true });      
+      that.setState({ codeMirrorLoaded: true });
     });
   }
 
@@ -167,8 +179,8 @@ export default class Editor extends React.Component {
         {dropboxBtn}
         {pdfBtn}
         {pdfIndianBtn}
-        {!this.state.codeMirrorLoaded ? null : (<CodeMirror          
-          editorDidMount={(editor) => { this.editorInstance = editor }}
+        {!this.state.codeMirrorLoaded ? null : (<CodeMirror
+          editorDidMount={(editor) => { this.editorInstance = editor;}}
           value={this.props.content}
           defineMode={this.mode}
           options={codeMirrorOptions}

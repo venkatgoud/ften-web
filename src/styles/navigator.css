@@ -1,0 +1,19 @@
+.cm-header,.CodeMirror-line {
+  padding: 10px 20px;
+}
+.cm-header-1 {
+  padding: 10px 30px;
+}
+
+.cm-header-2 {
+  padding: 10px 40px;
+}
+
+.cm-header-3 {
+  padding: 10px 50px;
+}
+
+.cm-header:hover{
+  cursor: pointer;
+  text-decoration-line: underline;
+}

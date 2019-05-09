@@ -40,7 +40,7 @@ export default class Master extends React.Component {
     this.onDbxTransEditorSave = this.onDbxTransEditorSave.bind(this)
     this.onEditorFilenameChange = this.onEditorFilenameChange.bind(this)
     this.onTransEditorFilenameChange = this.onTransEditorFilenameChange.bind(this)
-    this.setErrorMessage = this.setErrorMessage.bind(this)
+    this.setErrorMessage = this.setErrorMessage.bind(this);
   }
 
   updateState = (newState) => {
@@ -156,7 +156,7 @@ export default class Master extends React.Component {
   }
 
   onAbout = () => {
-    this.setState({showHelp: true})
+    this.setState({ showHelp: true })
   }
 
   onDbxTransEditorSave = (name, content) => {
@@ -204,7 +204,7 @@ export default class Master extends React.Component {
 
     return (
       <div className="master">
-        <DeviceInfo/>
+        <DeviceInfo />
         <MenuBar
           onOpen={this.handleOpenMenu}
           onDropboxSuccess={this.handleDropboxOpenMenu}
@@ -216,7 +216,7 @@ export default class Master extends React.Component {
         {errorDialog}
         {warningDialog}
         {infoDialog}
-        {this.state.showHelp ? <About onClick={()=>{this.setState({showHelp: false})}}/> : null}
+        {this.state.showHelp ? <About onClick={() => { this.setState({ showHelp: false }) }} /> : null}
         <Detail
           actionData={actionData}
           onPreview={this.onPreview}
