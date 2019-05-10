@@ -1,14 +1,30 @@
 import React from "react"
 import Detail from "./detail.js"
 import About from "../components/about.js"
+import Settings from "../components/settings.js"
 import DeviceInfo from "../components/device-info"
 import MenuBar from "../components/menu_bar.js"
 import Dialog from "../components/dialog.js"
 import { isAllowedExtension, EDITOR_MODE, EDITOR_MODE_TRANS, PREVIEW_MODE, PREVIEW_MODE_INDIAN, FILE_OPEN, FILE_EDIT, FILE_NEW, TRANSLITERATE } from "../utils/utils.js"
 import sample from "../utils/sample.js"
+import { SettingsContext } from '../components/settings-context'
 
 import fetch from 'isomorphic-fetch';
-const newFile = 'newfile1.fountain'
+const newFile = 'newfile1.fountain';
+
+const themes = [
+  { value: 'material', label: 'material' },
+  { value: 'ambiance', label: 'ambiance' },
+  { value: 'blackboard', label: 'blackboard' },
+  { value: 'cobalt', label: 'cobalt' },
+  { value: 'dracula', label: 'dracula' },
+  { value: 'default', label: 'default' },
+  { value: 'neat', label: 'neat' },
+  { value: 'solarized dark', label: 'solarized dark' },
+  { value: 'solarized light', label: 'solarized light' },
+  { value: 'yeti', label: 'yeti' },
+];
+
 
 export default class Master extends React.Component {
 
@@ -24,7 +40,11 @@ export default class Master extends React.Component {
       errorMsg: null,
       infoMsg: null,
       warningMsg: null,
-      showHelp: true
+      showHelp: true,
+      showSettings: false,
+      settings: {
+        theme: themes[0]
+      }
     }
     this.readFileContents = this.readFileContents.bind(this)
 
@@ -41,6 +61,8 @@ export default class Master extends React.Component {
     this.onEditorFilenameChange = this.onEditorFilenameChange.bind(this)
     this.onTransEditorFilenameChange = this.onTransEditorFilenameChange.bind(this)
     this.setErrorMessage = this.setErrorMessage.bind(this);
+    
+    this.changeTheme = this.changeTheme.bind(this);
   }
 
   updateState = (newState) => {
@@ -159,6 +181,10 @@ export default class Master extends React.Component {
     this.setState({ showHelp: true })
   }
 
+  onSettings = () => {
+    this.setState({ showSettings: true })
+  }
+
   onDbxTransEditorSave = (name, content) => {
     this.onDropboxSave(name, content)
   }
@@ -176,6 +202,13 @@ export default class Master extends React.Component {
     }
     window.Dropbox.save(dataURI, name, options);
   }
+
+  changeTheme = (selectedTheme) => {
+    this.setState({       
+      settings: { theme: selectedTheme }
+    });
+  }
+
 
   render() {
     console.log('master render');
@@ -211,25 +244,38 @@ export default class Master extends React.Component {
           onNew={this.handleNewMenu}
           onEdit={this.handleEditMenu}
           onTransliterate={this.handleTransliterateMenu}
+          onSettings={this.onSettings}
           onAbout={this.onAbout}
         />
         {errorDialog}
         {warningDialog}
         {infoDialog}
-        {this.state.showHelp ? <About onClick={() => { this.setState({ showHelp: false }) }} /> : null}
-        <Detail
-          actionData={actionData}
-          onPreview={this.onPreview}
-          onTransliteration={this.onTransliteration}
-          onEditorChange={this.onEditorChange}
-          onEditorFilenameChange={this.onEditorFilenameChange}
-          onDbxEditorSave={this.onDbxEditorSave}
-          onTransEditorChange={this.onTransEditorChange}
-          onTransEditorFilenameChange={this.onTransEditorFilenameChange}
-          onDbxTransEditorSave={this.onDbxTransEditorSave}
-          onError={this.setErrorMessage}
-          onInfo={this.onInfo}
-        />
+        {this.state.showHelp ? <About onClose={() => { this.setState({ showHelp: false }) }} /> : null}
+        {this.state.showSettings ? 
+          <Settings
+            theme={this.state.settings.theme} 
+            changeTheme={this.changeTheme}
+            themes={themes}
+            onClose={() => { this.setState({ showSettings: false }) }} 
+          /> : 
+          null
+        }
+        
+        <SettingsContext.Provider value={this.state.settings}>
+          <Detail
+            actionData={actionData}
+            onPreview={this.onPreview}
+            onTransliteration={this.onTransliteration}
+            onEditorChange={this.onEditorChange}
+            onEditorFilenameChange={this.onEditorFilenameChange}
+            onDbxEditorSave={this.onDbxEditorSave}
+            onTransEditorChange={this.onTransEditorChange}
+            onTransEditorFilenameChange={this.onTransEditorFilenameChange}
+            onDbxTransEditorSave={this.onDbxTransEditorSave}
+            onError={this.setErrorMessage}
+            onInfo={this.onInfo}
+          />
+        </SettingsContext.Provider>
       </div>)
   }
 }

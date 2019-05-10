@@ -1,6 +1,7 @@
 import React from "react";
 import { saveAs } from 'file-saver';
-import '../styles/navigator.css'
+import '../styles/navigator.css';
+import { SettingsContext } from './settings-context';
 import { UnControlled as CodeMirror } from 'react-codemirror2';
 if (typeof navigator !== 'undefined') {
   import('codemirror/addon/fold/foldcode.js');
@@ -15,7 +16,6 @@ const EditorToolbarBtn = (onClick, imgSrc, altText) => {
       <img src={imgSrc} width="24px" alt={altText} />
     </button>)
 }
-
 
 const codeMirrorOptions = {
   readOnly: true,
@@ -89,25 +89,30 @@ export default class Navigator extends React.Component {
   }
 
   render() {
-    console.log('navigator render');
-    let downloadBtn = EditorToolbarBtn(this.download, "gfx/icons/download.svg", "downloand")
-    let { lineArray, toc } = parse(this.props.content);
-
-    this.lineArray = lineArray;
-
-    return <div className="navigator">
-      <div className="editor__toolbar">
-        {downloadBtn}
-        <CodeMirror
-          editorDidMount={(editor) => {
-            this.editorInstance = editor;
-          }}
-          onDblClick={this.handleDoubleClick}
-          value={toc}
-          options={codeMirrorOptions}
-        />
-      </div>
-    </div>
+    return <SettingsContext.Consumer>
+      {settings => {
+        console.log('navigator render');
+        let downloadBtn = EditorToolbarBtn(this.download, "gfx/icons/download.svg", "downloand")
+        let { lineArray, toc } = parse(this.props.content);
+        this.lineArray = lineArray;
+        codeMirrorOptions.theme = settings.theme.value;
+        return < div className="navigator" >
+          <div className="editor__toolbar">
+            {downloadBtn}
+            <CodeMirror
+              editorDidMount={(editor) => {
+                this.editorInstance = editor;
+              }}
+              onDblClick={this.handleDoubleClick}
+              value={toc}
+              options={codeMirrorOptions}
+            />
+          </div>
+        </div>
+      }
+      }
+    </SettingsContext.Consumer>
   }
-
 }
+
+Navigator.contextType = SettingsContext;

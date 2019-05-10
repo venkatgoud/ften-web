@@ -48,6 +48,9 @@ export default class MenuBar extends React.Component {
         onClick={this.props.onTransliterate}
         src="gfx/icons/translation.svg" alt="Trans" />
       <MenuItem className="menu-item"
+        onClick={this.props.onSettings}
+        src="gfx/icons/settings.svg" alt="Settings" />
+      <MenuItem className="menu-item"
         onClick={this.props.onAbout}
         src="gfx/icons/info.svg" alt="About" />
     </div>

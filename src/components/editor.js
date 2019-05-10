@@ -4,8 +4,16 @@ import ClickToEdit from './click_to_edit.js';
 import Select from 'react-select';
 import 'codemirror/lib/codemirror.css';
 import 'codemirror/theme/material.css';
+import 'codemirror/theme/ambiance.css';
+import 'codemirror/theme/blackboard.css';
+import 'codemirror/theme/cobalt.css';
+import 'codemirror/theme/dracula.css';
+import 'codemirror/theme/neat.css';
+import 'codemirror/theme/solarized.css';
+import 'codemirror/theme/yeti.css';
 import 'codemirror/addon/fold/foldgutter.css';
 import '../styles/editor.css';
+import { SettingsContext } from './settings-context';
 import fountainModeFn from "../lib/fountain-mode.js";
 import { Controlled as CodeMirror } from 'react-codemirror2';
 
@@ -60,6 +68,12 @@ export default class Editor extends React.Component {
     this.generatePdf = this.generatePdf.bind(this)
     this.handleTransSelection = this.handleTransSelection.bind(this)
     this.saveToDropbox = this.saveToDropbox.bind(this)
+
+    this.downloadBtn = EditorToolbarBtn(this.download, "gfx/icons/download.svg", "downloand")
+    this.pdfBtn = EditorToolbarBtn(this.generatePdf, "gfx/icons/pdf.svg", "pdf")
+    this.pdfIndianBtn = EditorToolbarBtn(this.generateIndianPdf, "gfx/icons/indian.svg", "pdf")
+    this.transBtn = EditorToolbarBtn(this.transliterate, "gfx/icons/arrow.svg", "Transliterate")
+    this.dropboxBtn = EditorToolbarBtn(this.saveToDropbox, "gfx/icons/dropbox.svg", "Dropbox")
   }
 
   download = () => {
@@ -131,53 +145,56 @@ export default class Editor extends React.Component {
   }
 
   render() {
-    console.log('editor render')
+    return <SettingsContext.Consumer>
+      {settings => {
+        console.log('editor render')
 
-    let fileName = this.props.file || newFile;
-    let downloadBtn = EditorToolbarBtn(this.download, "gfx/icons/download.svg", "downloand")
-    let pdfBtn = EditorToolbarBtn(this.generatePdf, "gfx/icons/pdf.svg", "pdf")
-    let pdfIndianBtn = EditorToolbarBtn(this.generateIndianPdf, "gfx/icons/indian.svg", "pdf")
-    let transBtn = EditorToolbarBtn(this.transliterate, "gfx/icons/arrow.svg", "Transliterate")
-    let dropboxBtn = EditorToolbarBtn(this.saveToDropbox, "gfx/icons/dropbox.svg", "Dropbox")
+        let fileName = this.props.file || newFile;
 
-    let transMenu = (this.props.transMenu) ?
-      <div style={{ display: 'inline-block' }}>
-        <Select
-          className="transmenu"
-          value={this.props.transMenu.selectedScheme}
-          onChange={this.handleTransSelection}
-          options={this.props.transMenu.options}
-        />
-        {transBtn}
-      </div>
-      : null
+        let transMenu = (this.props.transMenu) ?
+          <div style={{ display: 'inline-block' }}>
+            <Select
+              className="transmenu"
+              value={this.props.transMenu.selectedScheme}
+              onChange={this.handleTransSelection}
+              options={this.props.transMenu.options}
+            />
+            {this.transBtn}
+          </div>
+          : null
 
-    return (<div className="editor" style={this.props.style}>
-      <div className="editor__toolbar">
-        <ClickToEdit
-          onEditEnd={(v) => { this.props.onFileNameChange(v) }}
-          maxLength="20"
-          containerClass="input-container"
-          inputClass="input-class"
-          textClass="text-class"
-          value={fileName} />
-        {transMenu}
-        {downloadBtn}
-        {dropboxBtn}
-        {pdfBtn}
-        {pdfIndianBtn}
-        <CodeMirror
-          editorDidMount={(editor) => { this.editorInstance = editor; }}
-          value={this.props.content}
-          defineMode={mode}
-          options={codeMirrorOptions}
-          onBeforeChange={
-            (editor, data, value) => !!this.props.content && this.props.onChange(value)}
-          onChange={(editor, data, value) => {
-          }}
-        />
-      </div>
-    </div>
-    )
+        codeMirrorOptions.theme = settings.theme.value;
+        return (
+          <div className="editor" style={this.props.style}>
+            <div className="editor__toolbar">
+              <ClickToEdit
+                onEditEnd={(v) => { this.props.onFileNameChange(v) }}
+                maxLength="20"
+                containerClass="input-container"
+                inputClass="input-class"
+                textClass="text-class"
+                value={fileName} />
+              {transMenu}
+              {this.downloadBtn}
+              {this.dropboxBtn}
+              {this.pdfBtn}
+              {this.pdfIndianBtn}
+              <CodeMirror
+                editorDidMount={(editor) => { this.editorInstance = editor; }}
+                value={this.props.content}
+                defineMode={mode}
+                options={codeMirrorOptions}
+                onBeforeChange={
+                  (editor, data, value) => !!this.props.content && this.props.onChange(value)}
+                onChange={(editor, data, value) => {
+                }}
+              />
+            </div>
+          </div>
+        )
+      }
+      }
+    </SettingsContext.Consumer>
   }
 }
+Editor.contextType = SettingsContext;

@@ -63,12 +63,13 @@ body {
   width: 50%;
   height: 100%;
   float: left;
-  padding-right: 5px;
+  padding-right: 1px;
 }
 
 .navigator {
+  padding: 0;
   width: 40%;
-  height: 85vh;
+  height: 100%;
   float: right;   
   background-color:#263238;
   font-family: 'Courier New', Courier, monospace;
@@ -222,15 +223,45 @@ body {
 }
 
 .about-close-btn {
-  position: fixed;      
+  position: fixed;
+  left: 300px;
+  top: 100px; 
   background:#ccc;
-  padding:2px 5px;    
+  padding:0px 10px;    
 }
 
 .about-close-btn:hover{
   cursor: pointer;  
   color:#fff;
 }
+
+.settings {   
+  background-color: floralwhite;
+  width: 400px;
+  height: 300px;
+  left: 400px;
+  top: 100px;
+  position: fixed;      
+  z-index: 5;
+  overflow: scroll;      
+  padding-left: 10px;
+  padding-right: 10px;
+  line-height: 1.6;
+}
+
+.settings-close-btn {
+  position: fixed;
+  left: 400px;
+  top: 100px;      
+  background:#ccc;
+  padding: 0px 10px;   
+}
+
+.settings-close-btn:hover{
+  cursor: pointer;  
+  color:#fff;
+}
+
 
 .device-info {
   visibility: hidden;
