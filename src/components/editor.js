@@ -12,6 +12,10 @@ import 'codemirror/theme/neat.css';
 import 'codemirror/theme/solarized.css';
 import 'codemirror/theme/yeti.css';
 import 'codemirror/addon/fold/foldgutter.css';
+import 'codemirror/addon/dialog/dialog.css';
+import 'codemirror/addon/hint/show-hint.css';
+
+
 import '../styles/editor.css';
 import { SettingsContext } from './settings-context';
 import fountainModeFn from "../lib/fountain-mode.js";
@@ -22,6 +26,7 @@ if (typeof navigator !== 'undefined') {
   import('codemirror/addon/fold/foldgutter.js');
   import('codemirror/addon/search/search.js');
   import('codemirror/addon/search/searchcursor.js');
+  import('codemirror/addon/search/jump-to-line.js');
   import('codemirror/addon/dialog/dialog.js');
 }
 
@@ -47,6 +52,7 @@ const codeMirrorOptions = {
   mode: 'fountain',
   lineWrapping: true,
   extraKeys: {
+    'Ctrl-Space': "autocomplete",
     'Ctrl-Q': (cm) => { cm.foldCode(cm.getCursor()); },
     'Shift-Ctrl-F': (cm) => {
       cm.eachLine((lh) => {

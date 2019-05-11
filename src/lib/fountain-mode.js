@@ -2,6 +2,13 @@ import fountainFoldFn from './fountain-fold';
 let CodeMirror;
 if (typeof navigator !== 'undefined') {
   CodeMirror = require('codemirror');
+
+  import('codemirror/addon/hint/show-hint.js');  
+  import('codemirror/addon/hint/anyword-hint.js');  
+
+  CodeMirror.commands.autocomplete = function(cm) {     
+    cm.showHint({hint: CodeMirror.hint.anyword});
+  }
 }
 
 const SCENE_HEADING = /(^\.[\w]+.+)|(?:(?:^(int|ext|est|int\.ext|int\/ext|i\/e))[. ].+)$/i;
