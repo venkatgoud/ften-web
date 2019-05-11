@@ -21,7 +21,7 @@ export default function fountainFoldFn(cm, start) {
   }
 
   function sceneHeading(lineNo, line) {
-    const SCENE_HEADING = /(^\.[\w]+.+)|(?:(?:^int|ext|est|int\.ext|int\/ext|i\/e)[. ].+)$/i;
+    const SCENE_HEADING = /(^\.[\w]+.+)|(?:(?:^(int|ext|est|int\.ext|int\/ext|i\/e))[. ].+)$/i;
     return line && SCENE_HEADING.test(line);
   }
 

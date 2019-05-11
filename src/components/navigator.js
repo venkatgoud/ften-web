@@ -38,7 +38,7 @@ const codeMirrorOptions = {
 function parse(script) {
   let lineArray = [];
   let toc;
-  const SCENE_HEADING = /(^\.[\w]+.+)|(?:(?:^int|ext|est|int\.ext|int\/ext|i\/e)[. ].+)$/i;
+  const SCENE_HEADING = /(^\.[\w]+.+)|(?:(?:^(int|ext|est|int\.ext|int\/ext|i\/e))[. ].+)$/i;
   const SECTION = (/^#+/);
   const src = script.split('\n');
   let lineNumber = 0;

@@ -1,10 +1,10 @@
-import fountainFoldFn from './fountain-fold'; 
+import fountainFoldFn from './fountain-fold';
 let CodeMirror;
 if (typeof navigator !== 'undefined') {
   CodeMirror = require('codemirror');
 }
- 
-const SCENE_HEADING = /(^\.[\w]+.+)|(?:(?:^int|ext|est|int\.ext|int\/ext|i\/e)[. ].+)$/i;
+
+const SCENE_HEADING = /(^\.[\w]+.+)|(?:(?:^(int|ext|est|int\.ext|int\/ext|i\/e))[. ].+)$/i;
 const TRANSITION = /^[A-Z\s]+TO:$/;
 const CHARACTER = /^['A-Z\s\d]+(\s*\(.+\)\s*)*$/;
 const PARENTHETICAL = /^\s*\(.+\)\s*$/;
@@ -32,6 +32,13 @@ export default function fountainModeFn(editorConf, config_) {
     return (!nextLine || nextLine === '');
   }
 
+  /** The stream object that's passed to token encapsulates a line of code 
+   * (tokens may never span lines) and our current position in that line 
+   * It should read one token from the stream it is given as an argument, 
+   * optionally update its state, and return a style string, or null for tokens that do not have to be styled. 
+   * For your styles, you are encouraged to use the 'standard' names defined in the themes 
+   * (without the cm- prefix). If that fails, it is also possible to come up with your own and write your own CSS theme file.
+   * */
   function token(stream, state) {
     console.log('token');
 
@@ -104,7 +111,8 @@ export default function fountainModeFn(editorConf, config_) {
         return 'line-ften-transition';
       }
     }
-    if (stream.match(SCENE_HEADING) && isNextLineBlank(stream)) {
+
+    if (stream.sol() && stream.match(SCENE_HEADING) && isNextLineBlank(stream)) {
       stream.skipToEnd();
       state.blankLine = false;
       state.character = false;
