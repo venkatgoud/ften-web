@@ -13,7 +13,7 @@
   padding: 10px 50px;
 }
 
-.cm-header:hover{
+.cm-header:hover, .cm-variable-2:hover{
   cursor: pointer;
   text-decoration-line: underline;
 }

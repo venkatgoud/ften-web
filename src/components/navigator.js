@@ -44,8 +44,12 @@ function parse(script) {
   let lineNumber = 0;
 
   for (let i = 0; i < src.length; i++) {
-    const line = src[i];
+    let line = src[i];
+
     if (SCENE_HEADING.test(line) || SECTION.test(line)) {
+      if (SCENE_HEADING.test(line)) {
+        line = '* ' + line; //Markdown list  
+      }
       lineArray[lineNumber++] = i;
       if (!toc) {
         toc = line
