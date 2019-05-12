@@ -21,6 +21,7 @@
     "gatsby": "^2.3.3",
     "isomorphic-fetch": "^2.2.1",
     "load-script": "^1.0.0",
+    "re-resizable": "^4.11.0",
     "react": "^16.8.6",
     "react-codemirror2": "^5.1.0",
     "react-dom": "^16.8.6",
