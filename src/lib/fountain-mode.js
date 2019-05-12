@@ -1,14 +1,13 @@
 import fountainFoldFn from './fountain-fold';
+import teluguwordFn from './teluguword';
+import {commonTeluguWords} from '../utils/common_telugu_words';
+
 let CodeMirror;
 if (typeof navigator !== 'undefined') {
   CodeMirror = require('codemirror');
 
   import('codemirror/addon/hint/show-hint.js');  
-  import('codemirror/addon/hint/anyword-hint.js');  
-
-  CodeMirror.commands.autocomplete = function(cm) {     
-    cm.showHint({hint: CodeMirror.hint.anyword});
-  }
+  import('codemirror/addon/hint/anyword-hint.js');   
 }
 
 const SCENE_HEADING = /(^\.[\w]+.+)|(?:(?:^(int|ext|est|int\.ext|int\/ext|i\/e))[. ].+)$/i;
@@ -23,7 +22,20 @@ const BOLD_ITALICS = /^\*\*\*(.+)\*\*\*$/;
 const UNDERLINE = /^_(.+)_$/;
 
 export default function fountainModeFn(editorConf, config_) {
+
+  console.log('fountainModeFn');
+  
   CodeMirror.registerHelper('fold', 'fountain', fountainFoldFn);
+  CodeMirror.registerHelper('hint', 'teluguword', teluguwordFn);
+
+  CodeMirror.commands.autocomplete = function(cm) {     
+    cm.showHint({hint: CodeMirror.hint.anyword});
+  }
+   
+  CodeMirror.commands.teluguAutoComplete = function(cm) {
+    cm.showHint({hint: CodeMirror.hint.teluguword, commonWords: commonTeluguWords});  
+  }
+
   function startState() {
     console.log('startState');
     const state = {

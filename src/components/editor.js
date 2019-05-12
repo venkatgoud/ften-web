@@ -52,7 +52,8 @@ const codeMirrorOptions = {
   mode: 'fountain',
   lineWrapping: true,
   extraKeys: {
-    'Ctrl-Space': "autocomplete",
+    'Ctrl-Space': 'autocomplete',
+    'Shift-Ctrl-Space': 'teluguAutoComplete',
     'Ctrl-Q': (cm) => { cm.foldCode(cm.getCursor()); },
     'Shift-Ctrl-F': (cm) => {
       cm.eachLine((lh) => {
