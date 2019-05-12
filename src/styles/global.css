@@ -35,7 +35,7 @@ body {
   border-radius: 6px;
   visibility: hidden;
   position: absolute;
-  top: 60px;
+  top: 50px;
   z-index: 3;
 }
 
@@ -46,7 +46,7 @@ body {
 .master {
   padding-left: 0;
   padding-top: 10px;
-  padding-right: 0;
+  padding-right: 0;   
 }
 
 .master__warning {
@@ -125,7 +125,7 @@ body {
 }
 
 .editor__toolbar__btn:hover{
-  background-color:darkslategray
+  background-color:darkslategray;
 }
 
 .editor__toolbar__btn:active{
