@@ -59,18 +59,20 @@ body {
    margin-right: 0;
 }
 
-.editor {
-  width: 50%;
-  height: 100%;
-  float: left;
+.editor {   
+  flex-grow: 1;
+  flex-shrink: 1;
+  flex-basis: 60%;
+  height: 100%;   
   padding-right: 1px;
 }
 
 .navigator {
   padding: 0;
-  width: 40%;
-  height: 100%;
-  float: right;   
+  flex-grow: 1;
+  flex-shrink: 1;
+  flex-basis: 40%;   
+  height: 100%;   
   background-color:#263238;
   font-family: 'Courier New', Courier, monospace;
   max-height: 85vh;
@@ -266,6 +268,14 @@ body {
 .device-info {
   visibility: hidden;
   display: none;   
+}
+
+.view_container {
+  display: flex;
+}
+
+.transeditor {
+  display: flex;
 }
 
 @media only screen and (max-width: 600px) {

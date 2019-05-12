@@ -1,4 +1,5 @@
-import React from "react"
+import React from "react";
+import Resizable from "re-resizable";
 import Editor from "../components/editor.js";
 import literate from "../lib/literator.js";
 import words from "../utils/common_words.js"
@@ -92,20 +93,24 @@ export default class TransEditor extends React.Component {
 
   render() {
     return <div className="transeditor">
-      <Editor content={this.props.actionData.editorContent}
-        onChange={this.props.onEditorChange}
-        onPreview={this.props.onPreview}
-        onDropboxSave={this.props.onDbxEditorSave}
-        transMenu={{
-          selectedScheme: this.state.language,
-          options: sourceLanguages,
-          onSelection: this.handleLangugeSelection,
-          onTransliteration: this.handleSourceTransliteration
-        }}
-        file={this.props.actionData.editorFile}
-        onFileNameChange={this.props.onEditorFilenameChange}
-        onError={this.props.onError}
-        onInfo={this.props.onInfo} />
+      <Resizable
+        enable={{ top: false, right: true, bottom: false, left: false, topRight: false, bottomRight: false, bottomLeft: false, topLeft: false }}
+      >
+        <Editor content={this.props.actionData.editorContent}
+          onChange={this.props.onEditorChange}
+          onPreview={this.props.onPreview}
+          onDropboxSave={this.props.onDbxEditorSave}
+          transMenu={{
+            selectedScheme: this.state.language,
+            options: sourceLanguages,
+            onSelection: this.handleLangugeSelection,
+            onTransliteration: this.handleSourceTransliteration
+          }}
+          file={this.props.actionData.editorFile}
+          onFileNameChange={this.props.onEditorFilenameChange}
+          onError={this.props.onError}
+          onInfo={this.props.onInfo} />
+      </Resizable>
       <Editor content={this.props.actionData.transEditorContent}
         onChange={this.onTransEditorChange}
         onPreview={this.props.onPreview}
