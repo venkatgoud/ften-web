@@ -1,30 +1,17 @@
-import React from "react"
-import Detail from "./detail.js"
-import About from "../components/about.js"
-import Settings from "../components/settings.js"
-import DeviceInfo from "../components/device-info"
-import MenuBar from "../components/menu_bar.js"
-import Dialog from "../components/dialog.js"
-import { isAllowedExtension, EDITOR_MODE, EDITOR_MODE_TRANS, PREVIEW_MODE, PREVIEW_MODE_INDIAN, FILE_OPEN, FILE_EDIT, FILE_NEW, TRANSLITERATE } from "../utils/utils.js"
-import sample from "../utils/sample.js"
-import { SettingsContext } from '../components/settings-context'
+import React from "react";
+import Detail from "./detail.js";
+import About from "../components/about.js";
+import Settings from "../components/settings.js";
+import DeviceInfo from "../components/device-info";
+import MenuBar from "../components/menu_bar.js";
+import Dialog from "../components/dialog.js";
+import { isAllowedExtension, EDITOR_MODE, EDITOR_MODE_TRANS, PREVIEW_MODE, PREVIEW_MODE_INDIAN, FILE_OPEN, FILE_EDIT, FILE_NEW, TRANSLITERATE } from "../utils/utils.js";
+import sample from "../utils/sample.js";
+import { SettingsContext } from '../components/settings-context';
+import {themes, defaultTheme } from '../utils/constants';
 
 import fetch from 'isomorphic-fetch';
 const newFile = 'newfile1.fountain';
-
-const themes = [
-  { value: 'material', label: 'material' },
-  { value: 'ambiance', label: 'ambiance' },
-  { value: 'blackboard', label: 'blackboard' },
-  { value: 'cobalt', label: 'cobalt' },
-  { value: 'dracula', label: 'dracula' },
-  { value: 'default', label: 'default' },
-  { value: 'neat', label: 'neat' },
-  { value: 'solarized dark', label: 'solarized dark' },
-  { value: 'solarized light', label: 'solarized light' },
-  { value: 'yeti', label: 'yeti' },
-];
-
 
 export default class Master extends React.Component {
 
@@ -43,7 +30,7 @@ export default class Master extends React.Component {
       showHelp: true,
       showSettings: false,
       settings: {
-        theme: themes[0]
+        theme: defaultTheme
       }
     }
     this.readFileContents = this.readFileContents.bind(this)
@@ -61,7 +48,7 @@ export default class Master extends React.Component {
     this.onEditorFilenameChange = this.onEditorFilenameChange.bind(this)
     this.onTransEditorFilenameChange = this.onTransEditorFilenameChange.bind(this)
     this.setErrorMessage = this.setErrorMessage.bind(this);
-    
+
     this.changeTheme = this.changeTheme.bind(this);
   }
 
@@ -204,7 +191,7 @@ export default class Master extends React.Component {
   }
 
   changeTheme = (selectedTheme) => {
-    this.setState({       
+    this.setState({
       settings: { theme: selectedTheme }
     });
   }
@@ -251,16 +238,16 @@ export default class Master extends React.Component {
         {warningDialog}
         {infoDialog}
         {this.state.showHelp ? <About onClose={() => { this.setState({ showHelp: false }) }} /> : null}
-        {this.state.showSettings ? 
+        {this.state.showSettings ?
           <Settings
-            theme={this.state.settings.theme} 
+            theme={this.state.settings.theme}
             changeTheme={this.changeTheme}
             themes={themes}
-            onClose={() => { this.setState({ showSettings: false }) }} 
-          /> : 
+            onClose={() => { this.setState({ showSettings: false }) }}
+          /> :
           null
         }
-        
+
         <SettingsContext.Provider value={this.state.settings}>
           <Detail
             actionData={actionData}

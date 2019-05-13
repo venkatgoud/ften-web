@@ -1,6 +1,8 @@
 import fountainFoldFn from './fountain-fold';
 import teluguwordFn from './teluguword';
 import {commonTeluguWords} from '../utils/common_telugu_words';
+import * as constants from './fountain-regex';
+
 
 let CodeMirror;
 if (typeof navigator !== 'undefined') {
@@ -9,18 +11,6 @@ if (typeof navigator !== 'undefined') {
   import('codemirror/addon/hint/show-hint.js');  
   import('codemirror/addon/hint/anyword-hint.js');   
 }
-
-const SCENE_HEADING = /(^\.[\w]+.+)|(?:(?:^(int|ext|est|int\.ext|int\/ext|i\/e))[. ].+)$/i;
-const TRANSITION = /^[A-Z\s]+TO:$/;
-const CHARACTER = /^['A-Z\s\d]+(\s*\(.+\)\s*)*$/;
-const PARENTHETICAL = /^\s*\(.+\)\s*$/;
-const CENTERED_TEXT = /^>(.+)<$/;
-const SECTION = /^#+/;
-const ITALICS = /^\*(.+)\*$/;
-const BOLD = /^\*\*(.+)\*\*$/;
-const BOLD_ITALICS = /^\*\*\*(.+)\*\*\*$/;
-const UNDERLINE = /^_(.+)_$/;
-
 export default function fountainModeFn(editorConf, config_) {
 
   console.log('fountainModeFn');
@@ -61,32 +51,32 @@ export default function fountainModeFn(editorConf, config_) {
   function token(stream, state) {
     console.log('token');
 
-    if (stream.match(ITALICS)) {
+    if (stream.match(constants.ITALICS)) {
       stream.skipToEnd();
       return 'em';
     }
 
-    if (stream.match(BOLD)) {
+    if (stream.match(constants.BOLD)) {
       stream.skipToEnd();
       return 'strong';
     }
 
-    if (stream.match(BOLD_ITALICS)) {
+    if (stream.match(constants.BOLD_ITALICS)) {
       stream.skipToEnd();
       return 'em strong';
     }
 
-    if (stream.match(UNDERLINE)) {
+    if (stream.match(constants.UNDERLINE)) {
       stream.skipToEnd();
       return 'link';
     }
 
-    if (stream.match(SECTION)) {
+    if (stream.match(constants.SECTION)) {
       stream.skipToEnd();
       return 'ften-section';
     }
 
-    if (stream.match(CENTERED_TEXT)) {
+    if (stream.match(constants.CENTERED_TEXT)) {
       stream.skipToEnd();
       state.blankLine = false;
       state.character = false;
@@ -95,7 +85,7 @@ export default function fountainModeFn(editorConf, config_) {
       return 'ften-centered-text';
     }
 
-    if ((state.character || state.dialog) && stream.match(PARENTHETICAL)) {
+    if ((state.character || state.dialog) && stream.match(constants.PARENTHETICAL)) {
       stream.skipToEnd();
       state.blankLine = false;
       state.character = false;
@@ -112,7 +102,7 @@ export default function fountainModeFn(editorConf, config_) {
       return 'string ften-dialog';
     }
     if (state.blankLine) {
-      if (stream.match(CHARACTER) && !isNextLineBlank(stream)) {
+      if (stream.match(constants.CHARACTER) && !isNextLineBlank(stream)) {
         stream.skipToEnd();
         state.blankLine = false;
         state.character = true;
@@ -121,7 +111,7 @@ export default function fountainModeFn(editorConf, config_) {
         return 'keyword ften-character';
       }
 
-      if (stream.match(TRANSITION) && isNextLineBlank(stream)) {
+      if (stream.match(constants.TRANSITION) && isNextLineBlank(stream)) {
         stream.skipToEnd();
         state.blankLine = false;
         state.character = false;
@@ -131,7 +121,7 @@ export default function fountainModeFn(editorConf, config_) {
       }
     }
 
-    if (stream.sol() && stream.match(SCENE_HEADING) && isNextLineBlank(stream)) {
+    if (stream.sol() && stream.match(constants.SCENE_HEADING) && isNextLineBlank(stream)) {
       stream.skipToEnd();
       state.blankLine = false;
       state.character = false;

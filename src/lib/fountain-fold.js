@@ -1,3 +1,5 @@
+import { SCENE_HEADING } from './fountain-regex';
+
 let CodeMirror;
 if (typeof navigator !== 'undefined') {
   CodeMirror = require('codemirror');
@@ -21,7 +23,6 @@ export default function fountainFoldFn(cm, start) {
   }
 
   function sceneHeading(lineNo, line) {
-    const SCENE_HEADING = /(^\.[\w]+.+)|(?:(?:^(int|ext|est|int\.ext|int\/ext|i\/e))[. ].+)$/i;
     return line && SCENE_HEADING.test(line);
   }
 
@@ -61,7 +62,7 @@ export default function fountainFoldFn(cm, start) {
     nextNextLine = cm.getLine(end + 2);
   }
 
-  return {    
+  return {
     from: CodeMirror.Pos(start.line, firstLine.length),
     to: CodeMirror.Pos(end, cm.getLine(end).length)
   };

@@ -1,0 +1,10 @@
+export const SCENE_HEADING = /(^\.[\w]+.+)|(?:(?:^(int|ext|est|int\.ext|int\/ext|i\/e))[. ].+)$/i;
+export const TRANSITION = /^[A-Z\s]+TO:$/;
+export const CHARACTER = /^['A-Z\s\d]+(\s*\(.+\)\s*)*$/;
+export const PARENTHETICAL = /^\s*\(.+\)\s*$/;
+export const CENTERED_TEXT = /^>(.+)<$/;
+export const SECTION = /^#+/;
+export const ITALICS = /^\*(.+)\*$/;
+export const BOLD = /^\*\*(.+)\*\*$/;
+export const BOLD_ITALICS = /^\*\*\*(.+)\*\*\*$/;
+export const UNDERLINE = /^_(.+)_$/;
