@@ -8,7 +8,7 @@ import Dialog from "../components/dialog.js";
 import { isAllowedExtension, EDITOR_MODE, EDITOR_MODE_TRANS, PREVIEW_MODE, PREVIEW_MODE_INDIAN, FILE_OPEN, FILE_EDIT, FILE_NEW, TRANSLITERATE } from "../utils/utils.js";
 import sample from "../utils/sample.js";
 import { SettingsContext } from '../components/settings-context';
-import {themes, defaultTheme } from '../utils/constants';
+import { themes, defaultTheme } from '../utils/constants';
 
 import fetch from 'isomorphic-fetch';
 const newFile = 'newfile1.fountain';
@@ -30,7 +30,9 @@ export default class Master extends React.Component {
       showHelp: true,
       showSettings: false,
       settings: {
-        theme: defaultTheme
+        theme: defaultTheme,
+        transDialog: true,
+        transAction: false
       }
     }
     this.readFileContents = this.readFileContents.bind(this)
@@ -196,6 +198,14 @@ export default class Master extends React.Component {
     });
   }
 
+  onTransSettingsChange = (name, value) => {
+    let newSettings = this.state.settings;
+    newSettings[name] = value;
+
+    this.setState({
+      settings: newSettings   
+    })
+  }
 
   render() {
     console.log('master render');
@@ -219,8 +229,8 @@ export default class Master extends React.Component {
         message={this.state.infoMsg}
         onOk={this.clearInfoMsg} /> : null;
 
-    let { mode, action, editorContent, transEditorContent, editorFile, transEditorFile } = this.state;
-    let actionData = { mode, action, editorContent, transEditorContent, editorFile, transEditorFile };
+    let { mode, action, editorContent, transEditorContent, editorFile, transEditorFile, settings } = this.state;     
+    let actionData = { mode, action, editorContent, transEditorContent, editorFile, transEditorFile, settings };
 
     return (
       <div className="master">
@@ -243,6 +253,9 @@ export default class Master extends React.Component {
             theme={this.state.settings.theme}
             changeTheme={this.changeTheme}
             themes={themes}
+            transDialog={this.state.settings.transDialog}
+            transAction={this.state.settings.transAction}
+            onTransChange={this.onTransSettingsChange}
             onClose={() => { this.setState({ showSettings: false }) }}
           /> :
           null

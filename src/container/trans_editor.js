@@ -2,7 +2,7 @@ import React from "react";
 import Resizable from "re-resizable";
 import Editor from "../components/editor.js";
 import literate from "../lib/literator.js";
-import words from "../utils/common_words.js"
+import words from "../utils/common_words.js";
 
 const sourceLanguages = [
   { value: 'telugu', label: 'Telugu' },
@@ -58,37 +58,21 @@ export default class TransEditor extends React.Component {
   handleSourceTransliteration = (content, language) => {
     let done = (result) => {
       this.props.onTransliteration(content, result)
-    }
-    literate.literate(content, dictionary, this.state.scheme.value, language.value, done)
+    }     
+    let opts = {}
+    opts.transAction = this.props.actionData.settings.transAction;
+    opts.transDialog = this.props.actionData.settings.transDialog;
+    literate.literate(content, dictionary, this.state.scheme.value, language.value, done, opts)
   }
 
   handleSchemeTransliteration = (content, scheme) => {
     let done = (result) => {
       this.props.onTransliteration(result, content)
     }
-    literate.literate(content, dictionary, this.state.language.value, scheme.value, done)
-  }
-
-  handleLangugeSelection = (language) => {
-    this.setState({ language: language });
-  }
-
-  handleSchemeSelection = (scheme) => {
-    this.setState({ scheme: scheme });
-  }
-
-  handleSourceTransliteration = (content, language) => {
-    let done = (result) => {
-      this.props.onTransliteration(content, result)
-    }
-    literate.literate(content, dictionary, this.state.scheme.value, language.value, done)
-  }
-
-  handleSchemeTransliteration = (content, scheme) => {
-    let done = (result) => {
-      this.props.onTransliteration(result, content)
-    }
-    literate.literate(content, dictionary, this.state.language.value, scheme.value, done)
+    let opts = {}
+    opts.transAction = this.props.actionData.settings.transAction;
+    opts.transDialog = this.props.actionData.settings.transDialog;
+    literate.literate(content, dictionary, this.state.language.value, scheme.value, done, opts)
   }
 
   render() {

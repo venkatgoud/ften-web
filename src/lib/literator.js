@@ -1,7 +1,6 @@
-const parser = require('./fountain')
-const Sanscript = require('./sanscript')
-// var concat = require('concat-stream')
-
+const parser = require('./fountain');
+const Sanscript = require('./sanscript');
+ 
 function transliterate(input, fromScheme, toScheme) {
   var output = Sanscript.Sanscript.t(input, fromScheme, toScheme); //TODO
   return output
@@ -21,7 +20,6 @@ function transform(dialog, dictionary, fromScheme, toScheme) {
   }
   
   return output;
-  
 }
 
 function exclude(word, dictionary) {
@@ -30,9 +28,8 @@ function exclude(word, dictionary) {
   return inDictionary
 }
 
-
-// pass data to transliterate. It will call done when it is done.
-function literate(data, dictionary,fromScheme, toScheme, done) {  
+// pass data to transliterate. It will call done when it is done.,
+function literate(data, dictionary,fromScheme, toScheme, done, opts={}) {  
   
   var result = [];
   var output = {
@@ -40,8 +37,6 @@ function literate(data, dictionary,fromScheme, toScheme, done) {
     end: function() { done(result.join(""))}
   }
   
-  // var output = concat((buffer) => done(buffer)); //create a stream
-
   parser.parse(data.toString(), true, function (result) {
     var tokens = result.tokens;
     for(let i=0; i < tokens.length; i++) {
@@ -63,13 +58,21 @@ function literate(data, dictionary,fromScheme, toScheme, done) {
         case 'line_break': output.write("\n\n"); break;
         case 'scene_heading':
         case 'transition':
-        case 'action':  output.write('\n'+token.text+'\n'); break;
+        case 'action':  
+          if (opts && opts.transAction)
+            output.write('\n'+transform(token.text, dictionary, fromScheme, toScheme) +'\n'); 
+          else
+            output.write('\n'+token.text+'\n'); 
+          break;
         case 'dialogue_begin':
         case 'dialogue_end': output.write("\n"); break;
         case 'dual_dialogue_begin': break;
         case 'dual_dialogue_end': break;
         case 'dialogue':              
-            output.write(transform(token.text, dictionary, fromScheme, toScheme));
+            if (opts && opts.transDialog)
+              output.write(transform(token.text, dictionary, fromScheme, toScheme));
+            else
+              output.write(token.text);
             break;
         case 'section': //TODO
         default: 
