@@ -55,24 +55,20 @@ export default class TransEditor extends React.Component {
     this.setState({ scheme: scheme });
   }
 
-  handleSourceTransliteration = (content, language) => {
-    let done = (result) => {
-      this.props.onTransliteration(content, result)
-    }     
+  handleSourceTransliteration = (content, language) => {    
     let opts = {}
     opts.transAction = this.props.actionData.settings.transAction;
     opts.transDialog = this.props.actionData.settings.transDialog;
-    literate.literate(content, dictionary, this.state.scheme.value, language.value, done, opts)
+    let result = literate(content, dictionary, this.state.scheme.value, language.value,opts);
+    this.props.onTransliteration(content, result);
   }
 
-  handleSchemeTransliteration = (content, scheme) => {
-    let done = (result) => {
-      this.props.onTransliteration(result, content)
-    }
+  handleSchemeTransliteration = (content, scheme) => {    
     let opts = {}
     opts.transAction = this.props.actionData.settings.transAction;
     opts.transDialog = this.props.actionData.settings.transDialog;
-    literate.literate(content, dictionary, this.state.language.value, scheme.value, done, opts)
+    let result = literate(content, dictionary, this.state.language.value, scheme.value, opts)
+    this.props.onTransliteration(result, content)
   }
 
   render() {
