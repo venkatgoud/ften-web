@@ -33,21 +33,21 @@ export default function literate(data, dictionary, fromScheme, toScheme, opts = 
 
   var result = [];
 
-  let wasCharacter = false;
+  let inDialog = false;
 
   let convert = (line) => {
     if (line.trim() === '') {
       result.push(line);
+      inDialog = false;
     }
     else if (FountainRegEx.CHARACTER.test(line)) {
       result.push(line);
-      wasCharacter = true;
+      inDialog = true;
     }
-    else if (wasCharacter && FountainRegEx.PARENTHETICAL.test(line)) {
-      result.push(line);
+    else if (inDialog && FountainRegEx.PARENTHETICAL.test(line)) {
+      result.push(line);       
     }
-    else if (wasCharacter && opts.transDialog) {
-      wasCharacter = false;
+    else if (inDialog && opts.transDialog) {      
       result.push(transform(line, dictionary, fromScheme, toScheme));
     }
     else if (opts.transAction) {
