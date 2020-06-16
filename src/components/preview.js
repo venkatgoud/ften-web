@@ -46,6 +46,9 @@ const stylesIndian = StyleSheet.create({
     top: 40,
     right: 60,
     textAlign: 'left'
+  },
+  centered: {
+
   }
 });
 
@@ -91,6 +94,9 @@ const standardStyles = StyleSheet.create({
     top: 40,
     right: 60,
     textAlign: 'left'
+  },
+  centered: {
+    alignSelf: "center"
   }
 });
 
@@ -142,6 +148,7 @@ let pdfContent = (tokens, styles) => {
   let otherItems = [];
 
   tokens.forEach((token, index) => {
+    console.log(token);
     switch (token.type) {
       case 'title':
         scriptTitle = <Text key={index} style={titleStyles.title}>{token.text}</Text>
@@ -172,6 +179,12 @@ let pdfContent = (tokens, styles) => {
       case 'dialogue':
       case 'parenthetical':
         otherItems.push(<Text key={index} style={styles[token.type]}>{token.text}</Text>)
+        break;
+      case 'centered':
+        otherItems.push(< View key={index}>
+          <Text style={styles[token.type]}>{token.text}</Text>
+          <Text style={styles.heading}>{"\n"}</Text>
+        </View>)
         break;
       default:
         otherItems.push(<View key={index} />)
