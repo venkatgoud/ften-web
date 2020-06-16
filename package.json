@@ -14,7 +14,7 @@
     "deploy": "gatsby build --prefix-paths && gh-pages -d public"
   },
   "dependencies": {
-    "@react-pdf/renderer": "^1.5.1",
+    "@react-pdf/renderer": "^2.0.0-beta.6",
     "codemirror": "^5.45.0",
     "dropbox": "^4.0.17",
     "file-saver": "^2.0.1",

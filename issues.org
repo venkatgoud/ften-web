@@ -2,26 +2,57 @@
 ** DONE Syntax highlighting
 ** DONE Linewrapping and cursor issue.
 ** DONE Folding
+** TODO Document how mode and folding really works.
+** DONE Search in the document.
+** DONE Telugu auto-complete keywords
+** DONE Auto-completion
 * DONE Full stops converted into | in Telugu
 * DONE Hover on menu items.
 * DONE Background should be merged for editor menus.
 * DONE Get default content from a sample script
 * DONE Dictionary words are empty
 * DONE Style the click to edit component - truncate the length
+* DONE Should not work in mobile. Use Media Queries to set display none
+* DONE Cleanup mess with navigator and Gatsby
+* DONE - add linenumbers in the fountain parser tokens for sections and headings. Only specific to navigator.
+* DONE Consolidate regex constants.
+* DONE Sections are not copied when transliterating.
+* DONE If there are multiple empty lines, transliteration doesn't preserve.  
+** IN-PROGRESS Dictionary of iTrans Telugu common words for auto-complete
+** BUG Parser doesn't respect empty lines. PDF generation would not have empty lines.
 * Help
-** A js gif animation explaining how to use.
+** DONE A gif animation explaining how to use.
 * Known issues
 ** Bug in drop down selection
+** Settings ignore English words in dialog.
+** When transliterating or PDF generation, non-conforming section headers or slugs are ignored. They should be replicated as is.
+** Coding conventions.
 * Deployment 
-** venkatgoud.github.io
-** credits and icon consolidation  https://github.com/eligrey/FileSaver.js
-** ESLint
-* Settings ignore English words in dialog.
-* (CONTD.) option - character shouldn't be last line in a page. keep track of count of lines per page and if exceeds add a new page?
-* Edit to drop box open file loads Preview.
-* pixels vs rem
-* Should not work in mobile. Use Media Queries to set display none
-* Bitter avuddi is not transliterating properly.
-* Dictionary of iTrans Telugu common words for auto-complete
-* ACTIVE dropbox info messages.
-* Dropbox saver - loading, refresh, login.
+** DONE venkatgoud.github.io
+* Production
+** Unit tests. 
+** ESLint.
+** Docs.
+** Performance.
+** pixels vs rem. Cleanup CSS. Design.
+** investigate - cm-force-blank-line css found in afterwriting.
+* Roadmap
+** Add a checkbox to filter scene headings in the navigator
+** Script bank - bunch of scripts. Idea bank.
+** NEXT Analysis.
+Each scene can be given a character up or down score. Based on that score, a graph is generated to see the ups and downs. The score can be added as a metadata to the fountain scene syntax anywhere. X-axis is time. Y-axis is the score. Multiple characters.
+Graph superimposed over standard beat sheets.
+** Kanban board.
+** Server version
+*** Review, share, server, collaboration. ProseMirror? - paid versions.
+*** Bookmarks.
+*** Version control.
+*** A notes slot to be reminded of something that could be rewritten would be very nice
+*** Import from final draft?
+*** Chat with people visiting the website.
+*** AI to generate a scene template based on character objectives.
+** (CONTD.) option - character shouldn't be last line in a page. keep track of count of lines per page and if exceeds add a new page? 
+** Outline mode. Script mode. Outline hides the '#' where as script mode shows them. 
+** Scene navigator. Sort of scenic order. Location order. Character?. Time between character appearance.
+* https://old.reddit.com/r/Screenwriting/comments/bkx2bq/im_creating_a_completely_free_fully_functional/
+* https://github.com/adobe/brackets/wiki/Research:-CodeMirror-document-linking
