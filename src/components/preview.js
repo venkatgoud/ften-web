@@ -48,7 +48,7 @@ const stylesIndian = StyleSheet.create({
     textAlign: 'left'
   },
   centered: {
-
+    alignSelf: "center"
   }
 });
 
