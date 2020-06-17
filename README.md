@@ -31,10 +31,9 @@
     <li>Only dialogs and action are transliterated. Rest are kept as is.</li>     
     <li>Certain often used English words are not 'converted'. They are kept as is. An internal dictionary is used for that.</li>
     <li>Only supports <a href="http://fountain.io">Fountain</a> format which is an open format. Most screenwriting software has an option for fountain.</li>
-    <li>BUG: Indian PDF format in native script doesn't work yet. Waiting on dependent component to support the woff fonts. Workaround: Use command line tools from <a href="https://github.com/venkatgoud/fountain-utils">here</a></li>
     <li>BUG: Saving native script directly into Dropbox fails. Workaround: You can always use the download option to download into your Dropbox folder to sync it.</li>
-    <li>BUG: The PDF for Hollywood format doesn't have correct margins. Don't use it!</li>
-    <li>BUG: Issues in formatting the title page in PDF</li>        
+    <li>BUG: Some places the generated pdf has awkward page breaks. Sometimes the page might end with a character or scene heading.</li>     
+    <li>BUG: pdf generation fails for large files.</li>     
   </ul>   
   <h3> Credits </h3>
   <a href="https://github.com/mattdaly/Fountain.js">https://github.com/mattdaly/Fountain.js</a><br/> 
