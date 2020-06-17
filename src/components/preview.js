@@ -1,9 +1,12 @@
 import React from "react"
-import { Page, View, Text, Document, StyleSheet } from '@react-pdf/renderer';
+import { Page, View, Text, Document, StyleSheet, Font } from '@react-pdf/renderer';
 import { PDFViewer } from '@react-pdf/renderer';
 import parser from '../lib/fountain.js'
+import SurannaFont from '../fonts/Suranna-normal'
 
-let DPI = 72
+let DPI = 72;
+const defaultFont = "Courier";
+const teluguFont = "Suranna";
 
 const stylesIndian = StyleSheet.create({
   page: {
@@ -11,14 +14,13 @@ const stylesIndian = StyleSheet.create({
     paddingTop: DPI * 1,
     paddingBottom: DPI * 1,
     fontSize: 12,
-    fontFamily: "Courier",
+    fontFamily: defaultFont,
     lineHeight: 1
   },
   scene_heading: {
     padding: 0,
     marginLeft: DPI * 1.5,
     marginRight: DPI * 0.75,
-    fontFamily: "Courier-Bold",
     textDecoration: "underline"
   },
   action: {
@@ -58,7 +60,7 @@ const standardStyles = StyleSheet.create({
     paddingTop: DPI * 1,
     paddingBottom: DPI * 1,
     fontSize: 12,
-    fontFamily: "Courier",
+    fontFamily: defaultFont,
     lineHeight: 1
   },
   transition: {
@@ -86,7 +88,6 @@ const standardStyles = StyleSheet.create({
     padding: 0,
     marginLeft: DPI * 1.5,
     marginRight: DPI * 0.75,
-    fontFamily: "Courier-Bold",
     textDecoration: "underline"
   },
   pageNumbers: {
@@ -134,6 +135,15 @@ const titleStyles = StyleSheet.create({
   }
 });
 
+const isTelugu = (str) => /[\u{0c00}-\u{0C7F}]+/u.test(str)
+
+const getFont = (str) => isTelugu(str) ? teluguFont : defaultFont
+
+Font.register({
+  family: teluguFont,
+  src: SurannaFont
+});
+
 const MyDocument = (props) => (
   <Document>
     {generate(props)}
@@ -148,41 +158,41 @@ let pdfContent = (tokens, styles) => {
   let otherItems = [];
 
   tokens.forEach((token, index) => {
-    console.log(token);
+    let font = { fontFamily: getFont(token.text) };
     switch (token.type) {
       case 'title':
-        scriptTitle = <Text key={index} style={titleStyles.title}>{token.text}</Text>
+        scriptTitle = <Text key={index} style={[titleStyles.title, font]}>{token.text}</Text>
         break;
       case 'credit':
       case 'author':
       case 'authors':
       case 'source':
       case 'notes':
-        authorDetails.push(<Text key={index} style={titleStyles.title_center_item}>{token.text}</Text>)
+        authorDetails.push(<Text key={index} style={[titleStyles.title_center_item, font]}>{token.text}</Text>)
         break;
       case 'draft_date':
       case 'date':
       case 'contact':
       case 'copyright':
-        contactDetails.push(<Text key={index} style={titleStyles.title_left_item}>{token.text}</Text>)
+        contactDetails.push(<Text key={index} style={[titleStyles.title_left_item, font]}>{token.text}</Text>)
         break;
       case 'scene_heading':
       case 'action':
       case 'dialogue_end':
       case 'transition':
         otherItems.push(<View key={index}>
-          <Text style={styles[token.type]}>{token.text}</Text>
+          <Text style={[styles[token.type], font]}>{token.text}</Text>
           <Text style={styles.heading}>{"\n"}</Text>
         </View>)
         break;
       case 'character':
       case 'dialogue':
       case 'parenthetical':
-        otherItems.push(<Text key={index} style={styles[token.type]}>{token.text}</Text>)
+        otherItems.push(<Text key={index} style={[styles[token.type], font]}>{token.text}</Text>)
         break;
       case 'centered':
         otherItems.push(< View key={index}>
-          <Text style={styles[token.type]}>{token.text}</Text>
+          <Text style={[styles[token.type], font]}>{token.text}</Text>
           <Text style={styles.heading}>{"\n"}</Text>
         </View>)
         break;
