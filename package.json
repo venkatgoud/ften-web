@@ -15,7 +15,7 @@
   },
   "dependencies": {
     "@react-pdf/renderer": "^2.0.0-beta.6",
-    "codemirror": "^5.45.0",
+    "codemirror": "^5.58.2",
     "dropbox": "^4.0.17",
     "file-saver": "^2.0.1",
     "gatsby": "^2.3.3",
